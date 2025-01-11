@@ -19,11 +19,10 @@ enum APIError: Error {
 }
 
 protocol APIClient {
-    associatedtype EndpointType: APIEndpoint
-    func request<T: Decodable>(_ endpoint: EndpointType) async -> Result<T, Error>
+    func request<T: Decodable>(_ endpoint: APIEndpoint) async -> Result<T, Error>
 }
 
-final class URLSessionAPIClient<EndpointType: APIEndpoint>: APIClient {
+final class URLSessionAPIClient: APIClient {
     private let baseURL = "https://api.coinranking.com/v2"
 
     private static var apiKey: String {
@@ -33,7 +32,7 @@ final class URLSessionAPIClient<EndpointType: APIEndpoint>: APIClient {
         return key
     }
 
-    func request<T: Decodable>(_ endpoint: EndpointType) async -> Result<T, Error> {
+    func request<T: Decodable>(_ endpoint: APIEndpoint) async -> Result<T, Error> {
         guard var url = URL(string: baseURL) else {
             return .failure(APIError.invalidURL)
         }
