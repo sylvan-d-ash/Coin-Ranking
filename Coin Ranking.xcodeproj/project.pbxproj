@@ -24,6 +24,7 @@
 		5ECBD4AF2D326F16008220AA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5ECBD4B22D326F16008220AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5ECBD4B42D326F16008220AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5ECBD4BA2D32705D008220AA /* secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = secrets.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +41,7 @@
 		5ECBD49A2D326F14008220AA = {
 			isa = PBXGroup;
 			children = (
+				5ECBD4BA2D32705D008220AA /* secrets.xcconfig */,
 				5ECBD4A52D326F14008220AA /* Coin Ranking */,
 				5ECBD4A42D326F14008220AA /* Products */,
 			);
