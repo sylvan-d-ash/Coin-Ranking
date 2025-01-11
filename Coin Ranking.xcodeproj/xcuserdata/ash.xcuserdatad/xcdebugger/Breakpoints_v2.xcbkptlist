@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "C3C83FA4-CE13-44F5-B304-B480205509A5"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "10C01362-A4D1-4005-ACF9-FED87196B29B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Coin Ranking/DataService/APIClient.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "request(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "10C01362-A4D1-4005-ACF9-FED87196B29B - 89db6e4cf77edd1c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for Coin_Ranking.URLSessionAPIClient.request&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable&gt;(Coin_Ranking.APIEndpoint) async -&gt; Swift.Result&lt;&#x3c4;_0_0, Swift.Error&gt;"
+                  moduleName = "Coin Ranking"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ash/iOS/Personal/Coin%20Ranking/Coin%20Ranking/DataService/APIClient.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "3434">
+               </Location>
+               <Location
+                  uuid = "10C01362-A4D1-4005-ACF9-FED87196B29B - ae34ffdca56d3f1f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for Coin_Ranking.URLSessionAPIClient.request&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable&gt;(Coin_Ranking.APIEndpoint) async -&gt; Swift.Result&lt;&#x3c4;_0_0, Swift.Error&gt;"
+                  moduleName = "Coin Ranking"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ash/iOS/Personal/Coin%20Ranking/Coin%20Ranking/DataService/APIClient.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "990">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C87C17BC-5C4F-4FD7-9062-C52E501CC887"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Coin Ranking/DataService/APIClient.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "request(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C87C17BC-5C4F-4FD7-9062-C52E501CC887 - 89db6e4cf77edda2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for Coin_Ranking.URLSessionAPIClient.request&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable&gt;(Coin_Ranking.APIEndpoint) async -&gt; Swift.Result&lt;&#x3c4;_0_0, Swift.Error&gt;"
+                  moduleName = "Coin Ranking"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ash/iOS/Personal/Coin%20Ranking/Coin%20Ranking/DataService/APIClient.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "3923">
+               </Location>
+               <Location
+                  uuid = "C87C17BC-5C4F-4FD7-9062-C52E501CC887 - ae34ffdca56d3fa1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for Coin_Ranking.URLSessionAPIClient.request&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable&gt;(Coin_Ranking.APIEndpoint) async -&gt; Swift.Result&lt;&#x3c4;_0_0, Swift.Error&gt;"
+                  moduleName = "Coin Ranking"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ash/iOS/Personal/Coin%20Ranking/Coin%20Ranking/DataService/APIClient.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "1450">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
