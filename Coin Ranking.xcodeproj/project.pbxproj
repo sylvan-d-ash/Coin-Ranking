@@ -13,6 +13,7 @@
 		5ECBD4AE2D326F14008220AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5ECBD4AC2D326F14008220AA /* Main.storyboard */; };
 		5ECBD4B02D326F16008220AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5ECBD4AF2D326F16008220AA /* Assets.xcassets */; };
 		5ECBD4B32D326F16008220AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5ECBD4B12D326F16008220AA /* LaunchScreen.storyboard */; };
+		5ECBD4BD2D32750D008220AA /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4BC2D32750D008220AA /* APIClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		5ECBD4B22D326F16008220AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5ECBD4B42D326F16008220AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5ECBD4BA2D32705D008220AA /* secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = secrets.xcconfig; sourceTree = "<group>"; };
+		5ECBD4BC2D32750D008220AA /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 		5ECBD4A52D326F14008220AA /* Coin Ranking */ = {
 			isa = PBXGroup;
 			children = (
+				5ECBD4BB2D3274BA008220AA /* DataService */,
 				5ECBD4A62D326F14008220AA /* AppDelegate.swift */,
 				5ECBD4A82D326F14008220AA /* SceneDelegate.swift */,
 				5ECBD4AA2D326F14008220AA /* ViewController.swift */,
@@ -67,6 +70,14 @@
 				5ECBD4B42D326F16008220AA /* Info.plist */,
 			);
 			path = "Coin Ranking";
+			sourceTree = "<group>";
+		};
+		5ECBD4BB2D3274BA008220AA /* DataService */ = {
+			isa = PBXGroup;
+			children = (
+				5ECBD4BC2D32750D008220AA /* APIClient.swift */,
+			);
+			path = DataService;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,6 +154,7 @@
 				5ECBD4AB2D326F14008220AA /* ViewController.swift in Sources */,
 				5ECBD4A72D326F14008220AA /* AppDelegate.swift in Sources */,
 				5ECBD4A92D326F14008220AA /* SceneDelegate.swift in Sources */,
+				5ECBD4BD2D32750D008220AA /* APIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
