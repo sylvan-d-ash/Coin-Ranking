@@ -9,20 +9,22 @@
 /* Begin PBXBuildFile section */
 		5ECBD4A72D326F14008220AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4A62D326F14008220AA /* AppDelegate.swift */; };
 		5ECBD4A92D326F14008220AA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4A82D326F14008220AA /* SceneDelegate.swift */; };
-		5ECBD4AB2D326F14008220AA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4AA2D326F14008220AA /* ViewController.swift */; };
+		5ECBD4AB2D326F14008220AA /* CoinsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4AA2D326F14008220AA /* CoinsListViewController.swift */; };
 		5ECBD4AE2D326F14008220AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5ECBD4AC2D326F14008220AA /* Main.storyboard */; };
 		5ECBD4B02D326F16008220AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5ECBD4AF2D326F16008220AA /* Assets.xcassets */; };
 		5ECBD4B32D326F16008220AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5ECBD4B12D326F16008220AA /* LaunchScreen.storyboard */; };
 		5ECBD4BD2D32750D008220AA /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4BC2D32750D008220AA /* APIClient.swift */; };
 		5ECBD4C02D327B29008220AA /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4BF2D327B29008220AA /* Coin.swift */; };
 		5ECBD4C22D327D41008220AA /* CoinsListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4C12D327D41008220AA /* CoinsListService.swift */; };
+		5ECBD4C42D328871008220AA /* FavouriteCoinsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4C32D328871008220AA /* FavouriteCoinsViewController.swift */; };
+		5ECBD4C72D328EB4008220AA /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4C62D328EB4008220AA /* UIColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5ECBD4A32D326F14008220AA /* Coin Ranking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Coin Ranking.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ECBD4A62D326F14008220AA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5ECBD4A82D326F14008220AA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		5ECBD4AA2D326F14008220AA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5ECBD4AA2D326F14008220AA /* CoinsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsListViewController.swift; sourceTree = "<group>"; };
 		5ECBD4AD2D326F14008220AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5ECBD4AF2D326F16008220AA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5ECBD4B22D326F16008220AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -31,6 +33,8 @@
 		5ECBD4BC2D32750D008220AA /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		5ECBD4BF2D327B29008220AA /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
 		5ECBD4C12D327D41008220AA /* CoinsListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsListService.swift; sourceTree = "<group>"; };
+		5ECBD4C32D328871008220AA /* FavouriteCoinsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteCoinsViewController.swift; sourceTree = "<group>"; };
+		5ECBD4C62D328EB4008220AA /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,11 +68,13 @@
 		5ECBD4A52D326F14008220AA /* Coin Ranking */ = {
 			isa = PBXGroup;
 			children = (
+				5ECBD4C52D328EA4008220AA /* Extensions */,
 				5ECBD4BE2D327B20008220AA /* Models */,
 				5ECBD4BB2D3274BA008220AA /* DataService */,
 				5ECBD4A62D326F14008220AA /* AppDelegate.swift */,
 				5ECBD4A82D326F14008220AA /* SceneDelegate.swift */,
-				5ECBD4AA2D326F14008220AA /* ViewController.swift */,
+				5ECBD4C32D328871008220AA /* FavouriteCoinsViewController.swift */,
+				5ECBD4AA2D326F14008220AA /* CoinsListViewController.swift */,
 				5ECBD4AC2D326F14008220AA /* Main.storyboard */,
 				5ECBD4AF2D326F16008220AA /* Assets.xcassets */,
 				5ECBD4B12D326F16008220AA /* LaunchScreen.storyboard */,
@@ -92,6 +98,14 @@
 				5ECBD4BF2D327B29008220AA /* Coin.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		5ECBD4C52D328EA4008220AA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5ECBD4C62D328EB4008220AA /* UIColor.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,9 +180,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5ECBD4C22D327D41008220AA /* CoinsListService.swift in Sources */,
-				5ECBD4AB2D326F14008220AA /* ViewController.swift in Sources */,
+				5ECBD4AB2D326F14008220AA /* CoinsListViewController.swift in Sources */,
 				5ECBD4A72D326F14008220AA /* AppDelegate.swift in Sources */,
 				5ECBD4A92D326F14008220AA /* SceneDelegate.swift in Sources */,
+				5ECBD4C42D328871008220AA /* FavouriteCoinsViewController.swift in Sources */,
+				5ECBD4C72D328EB4008220AA /* UIColor.swift in Sources */,
 				5ECBD4C02D327B29008220AA /* Coin.swift in Sources */,
 				5ECBD4BD2D32750D008220AA /* APIClient.swift in Sources */,
 			);
