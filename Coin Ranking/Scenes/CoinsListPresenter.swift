@@ -18,14 +18,16 @@ protocol CoinsListView: AnyObject {
 final class CoinsListPresenter {
     private weak var view: CoinsListView?
     private let service: CoinsListServiceProtocol
-    
+    private let store: FavouritesStoreProtocol
+
     private var coins = [Coin]()
     private var isLoading = false
     private var currentPage = 1
 
-    init(view: CoinsListView?, service: CoinsListServiceProtocol = CoinsListService()) {
+    init(view: CoinsListView?, service: CoinsListServiceProtocol = CoinsListService(), store: FavouritesStoreProtocol = FavouritesStore.shared) {
         self.view = view
         self.service = service
+        self.store = store
     }
 
     func fetchCoins() async {
@@ -48,5 +50,17 @@ final class CoinsListPresenter {
     func loadMore() async {
         currentPage += 1
         await fetchCoins()
+    }
+
+    func toggleFavourite(for uuid: String) {
+        if store.isFavourite(uuid) {
+            store.removeFavourite(uuid)
+        } else {
+            store.addFavourite(uuid)
+        }
+    }
+
+    func isFavourite(_ uuid: String) -> Bool {
+        return store.isFavourite(uuid)
     }
 }

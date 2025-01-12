@@ -7,20 +7,14 @@
 
 import Foundation
 
-final class Coin: Decodable {
-    let id: String
+struct Coin: Decodable {
+    let uuid: String
     let rank: Int
     let symbol: String
     let marketCap: String
     let price: String
     let iconUrl: String
     //let sparkline: [Double]
-    var isFavourite = false
-
-    private enum CodingKeys: String, CodingKey {
-        case id = "uuid"
-        case rank, symbol, marketCap, price, iconUrl//, sparkline
-    }
 }
 
 struct CoinAPIResponse: Decodable {

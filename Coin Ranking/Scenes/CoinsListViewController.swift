@@ -94,31 +94,24 @@ extension CoinsListViewController: UITableViewDataSource {
 
 extension CoinsListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let configuration: UISwipeActionsConfiguration
-
         let coin = coins[indexPath.row]
-        if coin.isFavourite {
-            let action = UIContextualAction(style: .destructive, title: "Remove Favourite") { _, _, completion in
-                coin.isFavourite = false
-                completion(true)
-            }
-            action.image = UIImage(named: "remove_favourite")?.withTintColor(.white, renderingMode: .alwaysTemplate)
 
-            configuration = UISwipeActionsConfiguration(actions: [action])
-        } else {
-            let action = UIContextualAction(style: .normal, title: "Add Favourite") { _, _, completion in
-                coin.isFavourite = true
-                completion(true)
-            }
-            action.backgroundColor = .systemGreen
-
-            let starImage = UIImage(named: "add_favourite")?.withTintColor(.white, renderingMode: .alwaysTemplate)
-            action.image = starImage
-
-            configuration = UISwipeActionsConfiguration(actions: [action])
+        let action = UIContextualAction(style: .normal, title: "") { [weak self] _, _, completion in
+            self?.presenter.toggleFavourite(for: coin.uuid)
+            completion(true)
         }
 
+        if presenter.isFavourite(coin.uuid) {
+            action.backgroundColor = .systemRed
+            action.image = UIImage(named: "remove_favourite")?.withTintColor(.white, renderingMode: .alwaysTemplate)
+        } else {
+            action.backgroundColor = .systemGreen
+            action.image = UIImage(named: "add_favourite")?.withTintColor(.white, renderingMode: .alwaysTemplate)
+        }
+
+        let configuration = UISwipeActionsConfiguration(actions: [action])
         configuration.performsFirstActionWithFullSwipe = false
+
         return configuration
     }
 }

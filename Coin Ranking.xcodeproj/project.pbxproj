@@ -17,8 +17,8 @@
 		5ECBD4C02D327B29008220AA /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4BF2D327B29008220AA /* Coin.swift */; };
 		5ECBD4C22D327D41008220AA /* CoinsListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4C12D327D41008220AA /* CoinsListService.swift */; };
 		5ECBD4C42D328871008220AA /* FavouriteCoinsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4C32D328871008220AA /* FavouriteCoinsViewController.swift */; };
-		5ECBD4C72D328EB4008220AA /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4C62D328EB4008220AA /* UIColor.swift */; };
 		5ECBD4CB2D329103008220AA /* CoinsListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4CA2D329103008220AA /* CoinsListPresenter.swift */; };
+		5ECBD4CD2D33F3CB008220AA /* FavouritesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4CC2D33F3CB008220AA /* FavouritesStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,8 +35,8 @@
 		5ECBD4BF2D327B29008220AA /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
 		5ECBD4C12D327D41008220AA /* CoinsListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsListService.swift; sourceTree = "<group>"; };
 		5ECBD4C32D328871008220AA /* FavouriteCoinsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteCoinsViewController.swift; sourceTree = "<group>"; };
-		5ECBD4C62D328EB4008220AA /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		5ECBD4CA2D329103008220AA /* CoinsListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsListPresenter.swift; sourceTree = "<group>"; };
+		5ECBD4CC2D33F3CB008220AA /* FavouritesStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,7 +73,6 @@
 				5ECBD4B42D326F16008220AA /* Info.plist */,
 				5ECBD4A62D326F14008220AA /* AppDelegate.swift */,
 				5ECBD4A82D326F14008220AA /* SceneDelegate.swift */,
-				5ECBD4C52D328EA4008220AA /* Extensions */,
 				5ECBD4BE2D327B20008220AA /* Models */,
 				5ECBD4BB2D3274BA008220AA /* DataService */,
 				5ECBD4C82D3290AE008220AA /* Scenes */,
@@ -87,6 +86,7 @@
 			children = (
 				5ECBD4BC2D32750D008220AA /* APIClient.swift */,
 				5ECBD4C12D327D41008220AA /* CoinsListService.swift */,
+				5ECBD4CC2D33F3CB008220AA /* FavouritesStore.swift */,
 			);
 			path = DataService;
 			sourceTree = "<group>";
@@ -97,14 +97,6 @@
 				5ECBD4BF2D327B29008220AA /* Coin.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		5ECBD4C52D328EA4008220AA /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				5ECBD4C62D328EB4008220AA /* UIColor.swift */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		5ECBD4C82D3290AE008220AA /* Scenes */ = {
@@ -199,11 +191,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5ECBD4C22D327D41008220AA /* CoinsListService.swift in Sources */,
+				5ECBD4CD2D33F3CB008220AA /* FavouritesStore.swift in Sources */,
 				5ECBD4AB2D326F14008220AA /* CoinsListViewController.swift in Sources */,
 				5ECBD4A72D326F14008220AA /* AppDelegate.swift in Sources */,
 				5ECBD4A92D326F14008220AA /* SceneDelegate.swift in Sources */,
 				5ECBD4C42D328871008220AA /* FavouriteCoinsViewController.swift in Sources */,
-				5ECBD4C72D328EB4008220AA /* UIColor.swift in Sources */,
 				5ECBD4C02D327B29008220AA /* Coin.swift in Sources */,
 				5ECBD4BD2D32750D008220AA /* APIClient.swift in Sources */,
 				5ECBD4CB2D329103008220AA /* CoinsListPresenter.swift in Sources */,
