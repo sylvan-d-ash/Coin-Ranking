@@ -75,26 +75,37 @@ final class URLSessionAPIClient: APIClient {
 
     private func getQueryItems(for parameters: [String: Any]?) -> [URLQueryItem]? {
         let parameters = parameters ?? [:]
+        var items = [URLQueryItem]()
 
-        return parameters.map { key, value in
-            var stringValue: String?
+        for (key, value) in parameters {
+            // handle array values
+            if let array = value as? [Any] {
+                for arrayItem in array {
+                    let queryItem = URLQueryItem(name: key, value: "\(arrayItem)")
+                    items.append(queryItem)
+                }
 
-            switch value {
-            case let string as String:
-                stringValue = string
-            case let number as NSNumber:
-                stringValue = number.stringValue
-            case let array as [Any]:
-                // Convert array to comma-separated string
-                stringValue = array.map { "\($0)" }.joined(separator: ",")
-            case let bool as Bool:
-                stringValue = bool ? "true" : "false"
-            default:
-                // Skip unsupported types
-                break
+            // handle other values
+            } else {
+                var stringValue: String?
+
+                switch value {
+                case let string as String:
+                    stringValue = string
+                case let number as NSNumber:
+                    stringValue = number.stringValue
+                case let bool as Bool:
+                    stringValue = bool ? "true" : "false"
+                default:
+                    // Skip unsupported types
+                    break
+                }
+
+                let item = URLQueryItem(name: key, value: stringValue)
+                items.append(item)
             }
-
-            return URLQueryItem(name: key, value: stringValue)
         }
+
+        return items
     }
 }
