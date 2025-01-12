@@ -27,6 +27,7 @@
 		5ECBD4DD2D342431008220AA /* FiltersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4DC2D342431008220AA /* FiltersViewModel.swift */; };
 		5ECBD4DF2D342795008220AA /* CoinRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4DE2D342795008220AA /* CoinRowView.swift */; };
 		5ECBD4E12D342DB5008220AA /* CoinRowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4E02D342DB5008220AA /* CoinRowTableViewCell.swift */; };
+		5ECBD4E32D343A6D008220AA /* CoinDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4E22D343A6D008220AA /* CoinDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		5ECBD4DC2D342431008220AA /* FiltersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersViewModel.swift; sourceTree = "<group>"; };
 		5ECBD4DE2D342795008220AA /* CoinRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRowView.swift; sourceTree = "<group>"; };
 		5ECBD4E02D342DB5008220AA /* CoinRowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRowTableViewCell.swift; sourceTree = "<group>"; };
+		5ECBD4E22D343A6D008220AA /* CoinDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 				5ECBD4C32D328871008220AA /* FavouriteCoinsViewController.swift */,
 				5ECBD4CE2D33F9AC008220AA /* FavouriteCoinsPresenter.swift */,
 				5ECBD4E02D342DB5008220AA /* CoinRowTableViewCell.swift */,
+				5ECBD4E22D343A6D008220AA /* CoinDetailsViewController.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -244,6 +247,7 @@
 				5ECBD4C42D328871008220AA /* FavouriteCoinsViewController.swift in Sources */,
 				5ECBD4C02D327B29008220AA /* Coin.swift in Sources */,
 				5ECBD4BD2D32750D008220AA /* APIClient.swift in Sources */,
+				5ECBD4E32D343A6D008220AA /* CoinDetailsViewController.swift in Sources */,
 				5ECBD4D62D340CBC008220AA /* FilterOption.swift in Sources */,
 				5ECBD4CB2D329103008220AA /* CoinsListPresenter.swift in Sources */,
 				5ECBD4E12D342DB5008220AA /* CoinRowTableViewCell.swift in Sources */,

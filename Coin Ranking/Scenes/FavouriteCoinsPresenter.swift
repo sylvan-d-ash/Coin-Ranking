@@ -45,14 +45,12 @@ final class FavouriteCoinsPresenter {
         isLoading = true
         view?.showLoading()
 
-        print(store.allFavourites())
         let result = await service.fetchFavouriteCoins(with: store.allFavourites(), page: currentPage)
         switch result {
         case .failure(let error):
             view?.display(error.localizedDescription)
         case .success(let response):
             coins.append(contentsOf: response.data.coins)
-            coins.forEach { print("UUID: \($0.uuid)") }
             view?.display(coins)
         }
 

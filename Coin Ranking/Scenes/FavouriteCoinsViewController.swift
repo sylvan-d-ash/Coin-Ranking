@@ -112,4 +112,10 @@ extension FavouriteCoinsViewController: UITableViewDelegate {
         let configuration = UISwipeActionsConfiguration(actions: [action])
         return configuration
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let coin = coins[indexPath.row]
+        let controller = CoinDetailsViewController(coin: coin)
+        navigationController?.pushViewController(controller, animated: true)
+    }
 }
