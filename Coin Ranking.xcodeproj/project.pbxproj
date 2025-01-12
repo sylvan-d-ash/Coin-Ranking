@@ -21,6 +21,10 @@
 		5ECBD4CD2D33F3CB008220AA /* FavouritesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4CC2D33F3CB008220AA /* FavouritesStore.swift */; };
 		5ECBD4CF2D33F9AC008220AA /* FavouriteCoinsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4CE2D33F9AC008220AA /* FavouriteCoinsPresenter.swift */; };
 		5ECBD4D42D340ACA008220AA /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4D32D340ACA008220AA /* String.swift */; };
+		5ECBD4D62D340CBC008220AA /* FilterOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4D52D340CBC008220AA /* FilterOption.swift */; };
+		5ECBD4D92D340DE0008220AA /* FiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4D82D340DE0008220AA /* FiltersView.swift */; };
+		5ECBD4DB2D342214008220AA /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4DA2D342214008220AA /* TestView.swift */; };
+		5ECBD4DD2D342431008220AA /* FiltersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4DC2D342431008220AA /* FiltersViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +45,10 @@
 		5ECBD4CC2D33F3CB008220AA /* FavouritesStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesStore.swift; sourceTree = "<group>"; };
 		5ECBD4CE2D33F9AC008220AA /* FavouriteCoinsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteCoinsPresenter.swift; sourceTree = "<group>"; };
 		5ECBD4D32D340ACA008220AA /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		5ECBD4D52D340CBC008220AA /* FilterOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterOption.swift; sourceTree = "<group>"; };
+		5ECBD4D82D340DE0008220AA /* FiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersView.swift; sourceTree = "<group>"; };
+		5ECBD4DA2D342214008220AA /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		5ECBD4DC2D342431008220AA /* FiltersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +89,7 @@
 				5ECBD4BE2D327B20008220AA /* Models */,
 				5ECBD4BB2D3274BA008220AA /* DataService */,
 				5ECBD4C82D3290AE008220AA /* Scenes */,
+				5ECBD4D72D340DC8008220AA /* Views */,
 				5ECBD4C92D3290C9008220AA /* Resources */,
 			);
 			path = "Coin Ranking";
@@ -100,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				5ECBD4BF2D327B29008220AA /* Coin.swift */,
+				5ECBD4D52D340CBC008220AA /* FilterOption.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -131,6 +141,16 @@
 				5ECBD4D32D340ACA008220AA /* String.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		5ECBD4D72D340DC8008220AA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5ECBD4D82D340DE0008220AA /* FiltersView.swift */,
+				5ECBD4DA2D342214008220AA /* TestView.swift */,
+				5ECBD4DC2D342431008220AA /* FiltersViewModel.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,8 +224,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5ECBD4DB2D342214008220AA /* TestView.swift in Sources */,
+				5ECBD4D92D340DE0008220AA /* FiltersView.swift in Sources */,
 				5ECBD4C22D327D41008220AA /* CoinsListService.swift in Sources */,
 				5ECBD4D42D340ACA008220AA /* String.swift in Sources */,
+				5ECBD4DD2D342431008220AA /* FiltersViewModel.swift in Sources */,
 				5ECBD4CD2D33F3CB008220AA /* FavouritesStore.swift in Sources */,
 				5ECBD4AB2D326F14008220AA /* CoinsListViewController.swift in Sources */,
 				5ECBD4CF2D33F9AC008220AA /* FavouriteCoinsPresenter.swift in Sources */,
@@ -214,6 +237,7 @@
 				5ECBD4C42D328871008220AA /* FavouriteCoinsViewController.swift in Sources */,
 				5ECBD4C02D327B29008220AA /* Coin.swift in Sources */,
 				5ECBD4BD2D32750D008220AA /* APIClient.swift in Sources */,
+				5ECBD4D62D340CBC008220AA /* FilterOption.swift in Sources */,
 				5ECBD4CB2D329103008220AA /* CoinsListPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

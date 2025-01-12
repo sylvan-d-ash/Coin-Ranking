@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import SwiftUI
+import Combine
 
 class CoinsListViewController: UIViewController {
     private let tableview = UITableView(frame: .zero, style: .plain)
@@ -18,6 +20,10 @@ class CoinsListViewController: UIViewController {
 
     private var presenter: CoinsListPresenter!
     private var coins: [Coin] = []
+
+    private var selectedFilter: FilterOption?
+    private var filtersViewModel = FiltersViewModel()
+    private var cancellables = Set<AnyCancellable>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +68,27 @@ private extension CoinsListViewController {
     func setupSubviews() {
         view.backgroundColor = .appBlack
 
+        let filtersView = FiltersView(filters: FilterOption.allCases, viewModel: filtersViewModel)
+        filtersViewModel.$selectedFilter.sink { [weak self] filter in
+            guard let self = self else { return }
+
+            if filter == .marketCap {
+                print("Can be equated")
+            }
+        }.store(in: &cancellables)
+        
+        let hostingController = UIHostingController(rootView: filtersView)
+        addChild(hostingController)
+        view.addSubview(hostingController.view)
+
+        hostingController.view.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            hostingController.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            hostingController.view.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            hostingController.view.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+        ])
+        hostingController.didMove(toParent: self)
+
         tableview.register(UITableViewCell.self, forCellReuseIdentifier: "\(UITableViewCell.self)")
         tableview.backgroundColor = .appBlack
         tableview.dataSource = self
@@ -70,7 +97,7 @@ private extension CoinsListViewController {
 
         tableview.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            tableview.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableview.topAnchor.constraint(equalTo: hostingController.view.bottomAnchor),
             tableview.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableview.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableview.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
