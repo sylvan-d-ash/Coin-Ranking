@@ -89,10 +89,11 @@ private extension CoinsListViewController {
         ])
         hostingController.didMove(toParent: self)
 
-        tableview.register(UITableViewCell.self, forCellReuseIdentifier: "\(UITableViewCell.self)")
+        tableview.register(CoinRowTableViewCell.self, forCellReuseIdentifier: CoinRowTableViewCell.reuseIdentifier)
         tableview.backgroundColor = .appBlack
         tableview.dataSource = self
         tableview.delegate = self
+//        tableview.separatorInset = UIEdgeInsets(top: 0, left: CoinRowView.Dimensions.rank + CoinRowView.Dimensions.padding, bottom: 0, right: CoinRowView.Dimensions.padding)
         view.addSubview(tableview)
 
         tableview.translatesAutoresizingMaskIntoConstraints = false
@@ -111,15 +112,12 @@ extension CoinsListViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "\(UITableViewCell.self)", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CoinRowTableViewCell.reuseIdentifier, for: indexPath) as? CoinRowTableViewCell else {
+            return UITableViewCell()
+        }
 
         let coin = coins[indexPath.row]
-        var content = cell.defaultContentConfiguration()
-        content.text = coin.symbol
-        content.secondaryText = "$" + coin.marketCap.formatCurrency()
-        content.imageProperties.tintColor = .systemYellow
-
-        cell.contentConfiguration = content
+        cell.configure(with: coin, forRowAt: indexPath.row)
 
         return cell
     }

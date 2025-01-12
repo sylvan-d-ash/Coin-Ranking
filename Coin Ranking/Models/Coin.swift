@@ -14,6 +14,7 @@ struct Coin: Decodable {
     let marketCap: String
     let price: String
     let iconUrl: String
+    let change: String
     //let sparkline: [Double]
 }
 

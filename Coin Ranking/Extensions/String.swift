@@ -8,7 +8,7 @@
 import Foundation
 
 extension String {
-    func formatCurrency() -> String {
+    func formatMarketCap() -> String {
         guard let number = Double(self) else { return "" }
 
         switch number {
@@ -21,5 +21,16 @@ extension String {
         default:
             return String(format: "%.0f", number) // No suffix for numbers below 1M
         }
+    }
+
+    func formatPrice(maxFractionDigits: Int = 2) -> String {
+        guard let number = Double(self) else { return "" }
+
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = maxFractionDigits
+        formatter.minimumFractionDigits = 0
+
+        return formatter.string(from: NSNumber(value: number)) ?? self
     }
 }

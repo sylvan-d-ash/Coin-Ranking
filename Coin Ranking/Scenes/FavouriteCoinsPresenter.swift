@@ -25,6 +25,7 @@ final class FavouriteCoinsPresenter {
 
     func viewDidAppear() async {
         coins = []
+        guard !store.allFavourites().isEmpty else { return }
         await fetchFavourites()
     }
 
