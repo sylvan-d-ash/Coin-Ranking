@@ -20,6 +20,7 @@
 		5ECBD4CB2D329103008220AA /* CoinsListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4CA2D329103008220AA /* CoinsListPresenter.swift */; };
 		5ECBD4CD2D33F3CB008220AA /* FavouritesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4CC2D33F3CB008220AA /* FavouritesStore.swift */; };
 		5ECBD4CF2D33F9AC008220AA /* FavouriteCoinsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4CE2D33F9AC008220AA /* FavouriteCoinsPresenter.swift */; };
+		5ECBD4D42D340ACA008220AA /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4D32D340ACA008220AA /* String.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		5ECBD4CA2D329103008220AA /* CoinsListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsListPresenter.swift; sourceTree = "<group>"; };
 		5ECBD4CC2D33F3CB008220AA /* FavouritesStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesStore.swift; sourceTree = "<group>"; };
 		5ECBD4CE2D33F9AC008220AA /* FavouriteCoinsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteCoinsPresenter.swift; sourceTree = "<group>"; };
+		5ECBD4D32D340ACA008220AA /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 				5ECBD4B42D326F16008220AA /* Info.plist */,
 				5ECBD4A62D326F14008220AA /* AppDelegate.swift */,
 				5ECBD4A82D326F14008220AA /* SceneDelegate.swift */,
+				5ECBD4D22D340ABF008220AA /* Extensions */,
 				5ECBD4BE2D327B20008220AA /* Models */,
 				5ECBD4BB2D3274BA008220AA /* DataService */,
 				5ECBD4C82D3290AE008220AA /* Scenes */,
@@ -120,6 +123,14 @@
 				5ECBD4AC2D326F14008220AA /* Main.storyboard */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		5ECBD4D22D340ABF008220AA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5ECBD4D32D340ACA008220AA /* String.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,6 +205,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5ECBD4C22D327D41008220AA /* CoinsListService.swift in Sources */,
+				5ECBD4D42D340ACA008220AA /* String.swift in Sources */,
 				5ECBD4CD2D33F3CB008220AA /* FavouritesStore.swift in Sources */,
 				5ECBD4AB2D326F14008220AA /* CoinsListViewController.swift in Sources */,
 				5ECBD4CF2D33F9AC008220AA /* FavouriteCoinsPresenter.swift in Sources */,

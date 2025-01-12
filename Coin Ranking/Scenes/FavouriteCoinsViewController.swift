@@ -93,7 +93,7 @@ extension FavouriteCoinsViewController: UITableViewDataSource {
         let coin = coins[indexPath.row]
         var content = cell.defaultContentConfiguration()
         content.text = coin.symbol
-        content.secondaryText = "$\(coin.marketCap)"
+        content.secondaryText = "$" + coin.marketCap.formatCurrency()
         content.imageProperties.tintColor = .systemYellow
 
         cell.contentConfiguration = content
