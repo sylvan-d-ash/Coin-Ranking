@@ -9,15 +9,24 @@ import Foundation
 
 enum CoinsListEndpoint: APIEndpoint {
     case getCoins(page: Int)
+    case getFavourites(uuids: [String], page: Int)
 
     var path: String { return "/coins" }
 
     var parameters: [String : Any]? {
+        let limit = 20
+
         switch self {
         case .getCoins(let page):
             return [
-                "offset": page,
-                "limit": 20
+                "offset": (page - 1) * limit,
+                "limit": limit
+            ]
+        case .getFavourites(let uuids, let page):
+            return [
+                "offset": (page - 1) * limit,
+                "limit": limit,
+                "uuids[]": uuids
             ]
         }
     }
@@ -25,6 +34,7 @@ enum CoinsListEndpoint: APIEndpoint {
 
 protocol CoinsListServiceProtocol: AnyObject {
     func fetchCoins(page: Int) async -> Result<CoinAPIResponse, Error>
+    func fetchFavouriteCoins(with uuids: [String], page: Int) async -> Result<CoinAPIResponse, Error>
 }
 
 class CoinsListService: CoinsListServiceProtocol {
@@ -36,6 +46,11 @@ class CoinsListService: CoinsListServiceProtocol {
 
     func fetchCoins(page: Int) async -> Result<CoinAPIResponse, Error> {
         let endpoint = CoinsListEndpoint.getCoins(page: page)
+        return await apiClient.request(endpoint)
+    }
+
+    func fetchFavouriteCoins(with uuids: [String], page: Int) async -> Result<CoinAPIResponse, Error> {
+        let endpoint = CoinsListEndpoint.getFavourites(uuids: uuids, page: page)
         return await apiClient.request(endpoint)
     }
 }
