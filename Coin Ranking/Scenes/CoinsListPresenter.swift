@@ -45,6 +45,7 @@ final class CoinsListPresenter {
         }
 
         isLoading = false
+        view?.hideLoading()
     }
 
     func loadMore() async {

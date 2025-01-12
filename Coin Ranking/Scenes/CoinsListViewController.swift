@@ -9,6 +9,12 @@ import UIKit
 
 class CoinsListViewController: UIViewController {
     private let tableview = UITableView(frame: .zero, style: .plain)
+    private let loadingIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView(style: .medium)
+        activityIndicator.color = .gray
+        activityIndicator.startAnimating()
+        return activityIndicator
+    }()
 
     private var presenter: CoinsListPresenter!
     private var coins: [Coin] = []
@@ -19,7 +25,7 @@ class CoinsListViewController: UIViewController {
         setupSubviews()
 
         presenter = CoinsListPresenter(view: self)
-        
+
         Task {
             await presenter.fetchCoins()
         }
@@ -28,18 +34,18 @@ class CoinsListViewController: UIViewController {
 
 extension CoinsListViewController: CoinsListView {
     func showLoading() {
-        // TODO
+        tableview.tableFooterView = loadingIndicator
     }
-    
+
     func hideLoading() {
-        // TODO
+        tableview.tableFooterView = UIView()
     }
-    
+
     func display(_ coins: [Coin]) {
         self.coins = coins
         tableview.reloadData()
     }
-    
+
     func display(_ error: String) {
         let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
