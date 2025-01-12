@@ -11,7 +11,7 @@ struct CoinRowView: View {
     enum Dimensions {
         static let rank: CGFloat = 30
         static let price: CGFloat = 100
-        static let icon: CGFloat = 24
+        static let icon: CGFloat = 40
         static let padding: CGFloat = 10
         static let change: CGFloat = 60
     }
@@ -26,9 +26,25 @@ struct CoinRowView: View {
                 .frame(width: Dimensions.rank, alignment: .leading)
                 .foregroundStyle(Color("TextGray"))
 
-            Image(systemName: "centsign.circle")
-                .resizable()
-                .frame(width: Dimensions.icon, height: Dimensions.icon)
+            AsyncImage(url: URL(string: coin.iconUrl)) { phase in
+                switch phase {
+                case .empty:
+                    ProgressView()
+                        .frame(width: Dimensions.icon, height: Dimensions.icon)
+                        .foregroundStyle(Color.white)
+                case .success(let image):
+                    image
+                        .resizable()
+                        .frame(width: Dimensions.icon, height: Dimensions.icon)
+                        .clipShape(Circle())
+                case .failure:
+                    Circle()
+                        .fill(Color.red)
+                        .frame(width: Dimensions.icon, height: Dimensions.icon)
+                @unknown default:
+                    EmptyView()
+                }
+            }
 
             VStack(alignment: .leading) {
                 Text(coin.symbol)
