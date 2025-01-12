@@ -57,7 +57,9 @@ private extension CoinsListViewController {
         view.backgroundColor = .appBlack
 
         tableview.register(UITableViewCell.self, forCellReuseIdentifier: "\(UITableViewCell.self)")
+        tableview.backgroundColor = .appBlack
         tableview.dataSource = self
+        tableview.delegate = self
         view.addSubview(tableview)
 
         tableview.translatesAutoresizingMaskIntoConstraints = false
@@ -82,11 +84,41 @@ extension CoinsListViewController: UITableViewDataSource {
         var content = cell.defaultContentConfiguration()
         content.text = coin.symbol
         content.secondaryText = "$\(coin.marketCap)"
-        content.image = UIImage(systemName: "star")
         content.imageProperties.tintColor = .systemYellow
 
         cell.contentConfiguration = content
 
         return cell
+    }
+}
+
+extension CoinsListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let configuration: UISwipeActionsConfiguration
+
+        let coin = coins[indexPath.row]
+        if coin.isFavourite {
+            let action = UIContextualAction(style: .destructive, title: "Remove Favourite") { _, _, completion in
+                coin.isFavourite = false
+                completion(true)
+            }
+            action.image = UIImage(named: "remove_favourite")?.withTintColor(.white, renderingMode: .alwaysTemplate)
+
+            configuration = UISwipeActionsConfiguration(actions: [action])
+        } else {
+            let action = UIContextualAction(style: .normal, title: "Add Favourite") { _, _, completion in
+                coin.isFavourite = true
+                completion(true)
+            }
+            action.backgroundColor = .systemGreen
+
+            let starImage = UIImage(named: "add_favourite")?.withTintColor(.white, renderingMode: .alwaysTemplate)
+            action.image = starImage
+
+            configuration = UISwipeActionsConfiguration(actions: [action])
+        }
+
+        configuration.performsFirstActionWithFullSwipe = false
+        return configuration
     }
 }

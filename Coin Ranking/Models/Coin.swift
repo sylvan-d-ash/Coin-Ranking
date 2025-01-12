@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Coin: Decodable {
+final class Coin: Decodable {
     let id: String
     let rank: Int
     let symbol: String
@@ -15,6 +15,7 @@ struct Coin: Decodable {
     let price: String
     let iconUrl: String
     //let sparkline: [Double]
+    var isFavourite = false
 
     private enum CodingKeys: String, CodingKey {
         case id = "uuid"
