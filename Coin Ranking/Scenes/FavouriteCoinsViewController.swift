@@ -26,6 +26,14 @@ final class FavouriteCoinsViewController: UIViewController {
 
         presenter = FavouriteCoinsPresenter(view: self)
     }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        Task {
+            await presenter.viewDidAppear()
+        }
+    }
 }
 
 private extension FavouriteCoinsViewController {
@@ -80,7 +88,17 @@ extension FavouriteCoinsViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "\(UITableViewCell.self)", for: indexPath)
+
+        let coin = coins[indexPath.row]
+        var content = cell.defaultContentConfiguration()
+        content.text = coin.symbol
+        content.secondaryText = "$\(coin.marketCap)"
+        content.imageProperties.tintColor = .systemYellow
+
+        cell.contentConfiguration = content
+
+        return cell
     }
 }
 
@@ -94,6 +112,7 @@ extension FavouriteCoinsViewController: UITableViewDelegate {
         action.backgroundColor = .systemRed
         action.image = UIImage(named: "remove_favourite")?.withTintColor(.white, renderingMode: .alwaysTemplate)
 
-        return UISwipeActionsConfiguration(actions: [action])
+        let configuration = UISwipeActionsConfiguration(actions: [action])
+        return configuration
     }
 }

@@ -7,23 +7,55 @@
 
 import Foundation
 
+@MainActor
 final class FavouriteCoinsPresenter {
     private weak var view: CoinsListView?
+    private let service: CoinsListServiceProtocol
     private let store: FavouritesStoreProtocol
-    private var coins: [Coin] = []
 
-    init(view: CoinsListView?, store: FavouritesStoreProtocol = FavouritesStore.shared) {
+    private var coins = [Coin]()
+    private var isLoading = false
+    private var currentPage = 1
+
+    init(view: CoinsListView?, service: CoinsListServiceProtocol = CoinsListService(), store: FavouritesStoreProtocol = FavouritesStore.shared) {
         self.view = view
+        self.service = service
         self.store = store
     }
 
-    func fetchFavourites() {
-        //
+    func viewDidAppear() async {
+        coins = []
+        await fetchFavourites()
+    }
+
+    func loadMore() async {
+        currentPage += 1
+        await fetchFavourites()
     }
 
     func removeFavourite(_ uuid: String) {
         store.removeFavourite(uuid)
         coins.removeAll { $0.uuid == uuid }
         view?.display(coins)
+    }
+
+    private func fetchFavourites() async {
+        guard !isLoading else { return }
+        isLoading = true
+        view?.showLoading()
+
+        print(store.allFavourites())
+        let result = await service.fetchFavouriteCoins(with: store.allFavourites(), page: currentPage)
+        switch result {
+        case .failure(let error):
+            view?.display(error.localizedDescription)
+        case .success(let response):
+            coins.append(contentsOf: response.data.coins)
+            coins.forEach { print("UUID: \($0.uuid)") }
+            view?.display(coins)
+        }
+
+        isLoading = false
+        view?.hideLoading()
     }
 }
