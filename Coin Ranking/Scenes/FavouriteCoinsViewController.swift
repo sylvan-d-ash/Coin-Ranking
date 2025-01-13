@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 final class FavouriteCoinsViewController: UIViewController {
     private let tableview = UITableView(frame: .zero, style: .plain)
@@ -96,6 +97,26 @@ extension FavouriteCoinsViewController: UITableViewDataSource {
         cell.configure(with: coin, forRowAt: indexPath.row)
 
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = CoinsListHeaderView()
+        let hostingController = UIHostingController(rootView: header)
+        addChild(hostingController)
+
+        let view = UIView(frame: .zero)
+        view.addSubview(hostingController.view)
+
+        hostingController.view.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            hostingController.view.topAnchor.constraint(equalTo: view.topAnchor),
+            hostingController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            hostingController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            hostingController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        ])
+        hostingController.didMove(toParent: self)
+
+        return view
     }
 }
 

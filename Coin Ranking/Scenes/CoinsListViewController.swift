@@ -93,7 +93,6 @@ private extension CoinsListViewController {
         tableview.backgroundColor = .appBlack
         tableview.dataSource = self
         tableview.delegate = self
-//        tableview.separatorInset = UIEdgeInsets(top: 0, left: CoinRowView.Dimensions.rank + CoinRowView.Dimensions.padding, bottom: 0, right: CoinRowView.Dimensions.padding)
         view.addSubview(tableview)
 
         tableview.translatesAutoresizingMaskIntoConstraints = false
@@ -120,6 +119,26 @@ extension CoinsListViewController: UITableViewDataSource {
         cell.configure(with: coin, forRowAt: indexPath.row)
 
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = CoinsListHeaderView()
+        let hostingController = UIHostingController(rootView: header)
+        addChild(hostingController)
+
+        let view = UIView(frame: .zero)
+        view.addSubview(hostingController.view)
+
+        hostingController.view.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            hostingController.view.topAnchor.constraint(equalTo: view.topAnchor),
+            hostingController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            hostingController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            hostingController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        ])
+        hostingController.didMove(toParent: self)
+
+        return view
     }
 }
 
