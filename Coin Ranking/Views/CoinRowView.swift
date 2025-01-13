@@ -77,6 +77,6 @@ struct CoinRowView: View {
 }
 
 #Preview {
-    let coin = Coin(uuid: "adsas", rank: 1, symbol: "BTC", marketCap: "1899234234543", price: "887654.78", iconUrl: "https://cdn.coinranking.com/Sy33Krudb/btc.svg", change: "-2120.5")
+    let coin = Coin(uuid: "adsas", rank: 1, symbol: "BTC", marketCap: "1899234234543", price: "887654.78", iconUrl: "https://cdn.coinranking.com/Sy33Krudb/btc.svg", change: "-2120.5", sparkline: "")
     return CoinRowView(position: 1, coin: coin)
 }

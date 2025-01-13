@@ -15,7 +15,7 @@ struct Coin: Decodable {
     let price: String
     let iconUrl: String
     let change: String
-    //let sparkline: [Double]
+    let sparkline: String
 }
 
 struct CoinAPIResponse: Decodable {

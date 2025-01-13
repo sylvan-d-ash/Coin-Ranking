@@ -29,6 +29,7 @@
 		5ECBD4E12D342DB5008220AA /* CoinRowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4E02D342DB5008220AA /* CoinRowTableViewCell.swift */; };
 		5ECBD4E32D343A6D008220AA /* CoinDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4E22D343A6D008220AA /* CoinDetailsViewController.swift */; };
 		5ECBD4E52D34BD65008220AA /* CoinsListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4E42D34BD65008220AA /* CoinsListHeaderView.swift */; };
+		5ECBD4E72D354D38008220AA /* CoinDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4E62D354D38008220AA /* CoinDetailsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		5ECBD4E02D342DB5008220AA /* CoinRowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRowTableViewCell.swift; sourceTree = "<group>"; };
 		5ECBD4E22D343A6D008220AA /* CoinDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailsViewController.swift; sourceTree = "<group>"; };
 		5ECBD4E42D34BD65008220AA /* CoinsListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsListHeaderView.swift; sourceTree = "<group>"; };
+		5ECBD4E62D354D38008220AA /* CoinDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 				5ECBD4DC2D342431008220AA /* FiltersViewModel.swift */,
 				5ECBD4DE2D342795008220AA /* CoinRowView.swift */,
 				5ECBD4E42D34BD65008220AA /* CoinsListHeaderView.swift */,
+				5ECBD4E62D354D38008220AA /* CoinDetailsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 			files = (
 				5ECBD4DB2D342214008220AA /* TestView.swift in Sources */,
 				5ECBD4D92D340DE0008220AA /* FiltersView.swift in Sources */,
+				5ECBD4E72D354D38008220AA /* CoinDetailsView.swift in Sources */,
 				5ECBD4C22D327D41008220AA /* CoinsListService.swift in Sources */,
 				5ECBD4D42D340ACA008220AA /* String.swift in Sources */,
 				5ECBD4DD2D342431008220AA /* FiltersViewModel.swift in Sources */,
