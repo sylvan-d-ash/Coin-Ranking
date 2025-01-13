@@ -8,11 +8,10 @@
 import SwiftUI
 
 struct CoinDetailsView: View {
-    let details: CoinDetails
-    let history: [CoinHistory]
+    @StateObject var viewModel: CoinDetailsViewModel
 
     private var isPositiveChange: Bool {
-        if let val = Double(details.change), val > 0 {
+        if let val = Double(viewModel.details?.change ?? ""), val > 0 {
             return true
         }
         return false
@@ -25,10 +24,10 @@ struct CoinDetailsView: View {
                 HStack(alignment: .bottom) {
                     VStack(alignment: .leading) {
                         HStack {
-                            Text(details.name)
+                            Text(viewModel.details?.name ?? "")
                                 .font(.body)
 
-                            Text("#\(details.rank)")
+                            Text("#\(viewModel.details?.rank ?? 0)")
                                 .font(.footnote)
                                 .foregroundStyle(Color("TextGray"))
                                 .padding(.horizontal, 8)
@@ -39,14 +38,14 @@ struct CoinDetailsView: View {
                             Spacer()
                         }
 
-                        Text("$\(details.price.formatPrice())")
+                        Text("$\(viewModel.details?.price.formatPrice() ?? "")")
                             .font(.title)
                             .bold()
                     }
 
                     Spacer()
 
-                    Text("\(details.change)%")
+                    Text("\(viewModel.details?.change ?? "")%")
                         .font(.title3)
                         .padding(.horizontal, 10)
                         .padding(.vertical, 5)
@@ -59,56 +58,63 @@ struct CoinDetailsView: View {
                     .background(Color("AppGray"))
 
                 // Chart
-                CoinHistoryView(history: history)
+                if viewModel.isLoadingHistory {
+                    ProgressView()
+                        .padding()
+                } else {
+                    CoinHistoryView(history: viewModel.history)
+                }
 
                 Divider()
                     .background(Color("AppGray"))
 
                 // Description
-                Text(details.description)
+                Text(viewModel.details?.description ?? "")
                     .font(.subheadline)
 
                 Divider()
                     .background(Color("AppGray"))
 
                 // Statistics
-                CoinStatisticsView(details: details)
+                if viewModel.isLoadingDetails {
+                    ProgressView()
+                        .padding()
+                } else {
+                    CoinStatisticsView(viewModel: viewModel)
+                }
             }
         }
         .padding(.horizontal, 8)
         .background(Color("AppBlack"))
         .foregroundStyle(Color.white)
+        .task {
+            await viewModel.fetchDetails()
+            await viewModel.fetchHistory()
+        }
+        .alert(
+            "Error",
+            isPresented: Binding(
+                get: { viewModel.errorMessage != nil },
+                set: { if !$0 { viewModel.errorMessage = nil }}
+            ),
+            presenting: viewModel.errorMessage) { _ in
+                Button("Cancel", role: .cancel) {}
+            } message: { message in
+                Text(message)
+            }
     }
 }
 
 #Preview {
-    let supply = CoinDetails.Supply(max: "21000000", total: "19809512", circulating: "19809512")
-    let allTimeHigh = CoinDetails.AllTimeHigh(price: "108195.47505398515")
-    let details = CoinDetails(uuid: "Qwsogvtv82FCd",
-                              name: "Bitcoin",
-                              symbol: "BTC",
-                              rank: 1, price: "91451.123456",
-                              change: "-3.33",
-                              marketCap: "1811602126581",
-                              volume: "37487203119",
-                              fullyDilutedMarketCap: "1920473591586",
-                              description: "Bitcoin is a digital currency with a finite supply, allowing users to send/receive money without a central bank/government, often nicknamed \"Digital Gold\"",
-                              numberOfMarkets: 2451,
-                              numberOfExchanges: 104,
-                              supply: supply,
-                              allTimeHigh: allTimeHigh
+    let coin = Coin(uuid: "Qwsogvtv82FCd",
+                    rank: 1,
+                    symbol: "BTC",
+                    marketCap: "1811602126581",
+                    price: "91451.123456",
+                    iconUrl: "https://cdn.coinranking.com/Sy33Krudb/btc.svg",
+                    change: "-3.33"
     )
+    let viewModel = CoinDetailsViewModel(coin: coin)
 
-    let history = [
-        CoinHistory(price: "91641.73371438966", timestamp: TimeInterval(1736774700)),
-        CoinHistory(price: "91579.73371438966", timestamp: TimeInterval(1736774400)),
-        CoinHistory(price: "91351.73371438966", timestamp: TimeInterval(1736774100)),
-        CoinHistory(price: "91201.73371438966", timestamp: TimeInterval(1736773800)),
-        CoinHistory(price: "90813.73371438966", timestamp: TimeInterval(1736773500)),
-        CoinHistory(price: "90782.73371438966", timestamp: TimeInterval(1736773200)),
-        CoinHistory(price: "90821.73371438966", timestamp: TimeInterval(1736772900)),
-        CoinHistory(price: "90613.73371438966", timestamp: TimeInterval(1736772600)),
-    ]
-
-    return CoinDetailsView(details: details, history: history)
+    return CoinDetailsView(viewModel: viewModel)
 }

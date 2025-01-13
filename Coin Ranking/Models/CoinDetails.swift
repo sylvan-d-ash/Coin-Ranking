@@ -9,7 +9,7 @@ import Foundation
 
 struct CoinDetails: Decodable {
     struct Supply: Decodable {
-        let max: String
+        let max: String?
         let total: String
         let circulating: String
     }

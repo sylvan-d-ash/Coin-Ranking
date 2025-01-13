@@ -22,7 +22,7 @@ class CoinsListViewController: UIViewController {
     private var coins: [Coin] = []
 
     private var selectedFilter: FilterOption?
-    private var filtersViewModel = FiltersViewModel()
+    private let filtersViewModel = FiltersViewModel()
     private var cancellables = Set<AnyCancellable>()
 
     override func viewDidLoad() {

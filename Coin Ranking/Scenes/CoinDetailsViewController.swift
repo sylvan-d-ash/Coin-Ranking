@@ -6,12 +6,15 @@
 //
 
 import UIKit
+import SwiftUI
 
 final class CoinDetailsViewController: UIViewController {
     private var coin: Coin
+    private let viewModel: CoinDetailsViewModel
 
     init(coin: Coin) {
         self.coin = coin
+        viewModel = CoinDetailsViewModel(coin: coin)
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -23,6 +26,11 @@ final class CoinDetailsViewController: UIViewController {
         super.viewDidLoad()
         setupNavigationBar()
         setupSubviews()
+
+//        Task {
+//            await viewModel.fetchDetails()
+//            await viewModel.fetchHistory()
+//        }
     }
 }
 
@@ -34,5 +42,19 @@ private extension CoinDetailsViewController {
 
     func setupSubviews() {
         view.backgroundColor = .appBlack
+
+        let detailsView = CoinDetailsView(viewModel: self.viewModel)
+        let hostingController = UIHostingController(rootView: detailsView)
+        addChild(hostingController)
+        view.addSubview(hostingController.view)
+
+        hostingController.view.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            hostingController.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            hostingController.view.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            hostingController.view.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            hostingController.view.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+        ])
+        hostingController.didMove(toParent: self)
     }
 }
