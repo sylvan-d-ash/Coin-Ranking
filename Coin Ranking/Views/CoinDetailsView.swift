@@ -6,98 +6,16 @@
 //
 
 import SwiftUI
-import Charts
-
-struct CoinDetails: Decodable {
-    struct Supply: Decodable {
-        let max: String
-        let total: String
-        let circulating: String
-    }
-
-    struct AllTimeHigh: Decodable {
-        let price: String
-    }
-
-    let uuid: String
-    let name: String
-    let symbol: String
-    let rank: Int
-    let price: String
-    let change: String
-    let marketCap: String
-    let volume: String // 24hVolume
-    let fullyDilutedMarketCap: String
-    let description: String
-    let numberOfMarkets: Int
-    let numberOfExchanges: Int
-    let supply: Supply
-    let allTimeHigh: AllTimeHigh
-
-    var isPositiveChange: Bool {
-        if let val = Double(change), val > 0 {
-            return true
-        }
-        return false
-    }
-}
-
-struct CoinHistory: Decodable {
-    struct History: Decodable {
-        let price: String
-        let timestamp: TimeInterval
-    }
-
-    let change: String
-    let history: [History]
-}
 
 struct CoinDetailsView: View {
     let details: CoinDetails
-    let history: CoinHistory
+    let history: [CoinHistory]
 
     private var isPositiveChange: Bool {
         if let val = Double(details.change), val > 0 {
             return true
         }
         return false
-    }
-
-    private func formattedTime(from timestamp: TimeInterval) -> Date {
-        return Date(timeIntervalSince1970: timestamp)
-    }
-
-    private func amPMTime(from timestamp: TimeInterval) -> String {
-        let date = Date(timeIntervalSince1970: timestamp)
-        let formatter = DateFormatter()
-        formatter.dateFormat = "h a"
-        return formatter.string(from: date)
-    }
-
-    private func priceRange() -> ClosedRange<Double> {
-        let prices = history.history.compactMap { Double($0.price) }
-        guard let minPrice = prices.min(), let maxPrice = prices.max() else {
-            return 0...1
-        }
-        print(minPrice)
-        print(maxPrice)
-        return minPrice...maxPrice
-    }
-
-    private func isExtremePrice(_ price: Double) -> Bool {
-        let prices = history.history.compactMap { Double($0.price) }
-        guard let minPrice = prices.min(), let maxPrice = prices.max() else {
-            return false
-        }
-        return price == minPrice || price == maxPrice
-    }
-
-    private func extremePrices() -> (min: Double, max: Double)? {
-        let prices = history.history.compactMap { Double($0.price) }
-        guard let minPrice = prices.min(), let maxPrice = prices.max() else {
-            return nil
-        }
-        return (min: minPrice, max: maxPrice)
     }
 
     var body: some View {
@@ -140,138 +58,21 @@ struct CoinDetailsView: View {
                 Divider()
                     .background(Color("AppGray"))
 
-                Chart(history.history, id: \.timestamp) { entry in
-                    LineMark(
-                        x: .value("Time", formattedTime(from: entry.timestamp)),
-                        y: .value("Price", Double(entry.price) ?? 0.0)
-                    )
-                    .foregroundStyle(Color.green)
-                }
-                .chartYScale(domain: priceRange())
-                .chartXAxis {
-                    AxisMarks { value in
-                        AxisValueLabel()
-                            .foregroundStyle(Color("TextGray"))
-                    }
-                }
-                .chartYAxis {
-                    AxisMarks(position: .trailing) { value in
-                        AxisValueLabel()
-                            .foregroundStyle(Color("TextGray"))
-                        AxisGridLine()
-                            .foregroundStyle(Color("TextGray"))
-                        AxisTick()
-                    }
-
-                    // Add lowest and highest price markers
-                    if let prices = extremePrices() {
-                        AxisMarks(values: [prices.min, prices.max]) { value in
-                            AxisValueLabel()
-                                .font(.caption)
-                                .foregroundStyle(Color("TextGray"))
-                            AxisGridLine()
-                                .foregroundStyle(Color("TextGray"))
-                        }
-                    }
-                }
-                .frame(height: 200)
+                // Chart
+                CoinHistoryView(history: history)
 
                 Divider()
                     .background(Color("AppGray"))
 
+                // Description
                 Text(details.description)
                     .font(.subheadline)
 
                 Divider()
                     .background(Color("AppGray"))
 
-                VStack(alignment: .leading) {
-                    Text("Statistics")
-                        .font(.title)
-
-                    HStack {
-                        VStack(alignment: .leading, spacing: 12) {
-                            VStack(alignment: .leading, spacing: 5) {
-                                Text("Market Cap")
-                                    .foregroundStyle(Color("TextGray"))
-                                Text("$\(details.marketCap.formatMarketCap())")
-                                    .bold()
-                            }
-
-                            VStack(alignment: .leading, spacing: 5) {
-                                Text("Volume")
-                                    .foregroundStyle(Color("TextGray"))
-                                Text("$\(details.volume.formatMarketCap())")
-                                    .bold()
-                            }
-
-                            VStack(alignment: .leading, spacing: 5) {
-                                Text("Max Supply")
-                                    .foregroundStyle(Color("TextGray"))
-                                Text("\(details.supply.max.formatMarketCap()) \(details.symbol)")
-                                    .bold()
-                            }
-
-                            VStack(alignment: .leading, spacing: 5) {
-                                Text("All Time High")
-                                    .foregroundStyle(Color("TextGray"))
-                                Text("$\(details.allTimeHigh.price.formatPrice())")
-                                    .bold()
-                            }
-
-                            VStack(alignment: .leading, spacing: 5) {
-                                Text("Number of Markets")
-                                    .foregroundStyle(Color("TextGray"))
-                                Text("\(details.numberOfMarkets)")
-                                    .bold()
-                            }
-                        }
-                        .font(.subheadline)
-
-                        Spacer()
-                        Divider()
-                            .background(Color("TextGray"))
-                            .padding(.trailing, 10)
-
-                        VStack(alignment: .leading, spacing: 12) {
-                            VStack(alignment: .leading, spacing: 5) {
-                                Text("Fully Diluted Market Cap")
-                                    .foregroundStyle(Color("TextGray"))
-                                Text(details.fullyDilutedMarketCap.formatMarketCap())
-                                    .bold()
-                            }
-
-                            VStack(alignment: .leading, spacing: 5) {
-                                Text("Circulating Supply")
-                                    .foregroundStyle(Color("TextGray"))
-                                Text("\(details.supply.circulating.formatMarketCap()) \(details.symbol)")
-                                    .bold()
-                            }
-
-                            VStack(alignment: .leading, spacing: 5) {
-                                Text("Total Supply")
-                                    .foregroundStyle(Color("TextGray"))
-                                Text("\(details.supply.total.formatMarketCap()) \(details.symbol)")
-                                    .bold()
-                            }
-
-                            VStack(alignment: .leading, spacing: 5) {
-                                Text("Ranks")
-                                    .foregroundStyle(Color("TextGray"))
-                                Text("#\(details.rank)")
-                                    .bold()
-                            }
-
-                            VStack(alignment: .leading, spacing: 5) {
-                                Text("Number of Exhanges")
-                                    .foregroundStyle(Color("TextGray"))
-                                Text("\(details.numberOfExchanges)")
-                                    .bold()
-                            }
-                        }
-                        .font(.subheadline)
-                    }
-                }
+                // Statistics
+                CoinStatisticsView(details: details)
             }
         }
         .padding(.horizontal, 8)
@@ -298,18 +99,16 @@ struct CoinDetailsView: View {
                               allTimeHigh: allTimeHigh
     )
 
-    let history = CoinHistory(change: "-3.33",
-                              history: [
-                                CoinHistory.History(price: "91641.73371438966", timestamp: TimeInterval(1736774700)),
-                                CoinHistory.History(price: "91579.73371438966", timestamp: TimeInterval(1736774400)),
-                                CoinHistory.History(price: "91351.73371438966", timestamp: TimeInterval(1736774100)),
-                                CoinHistory.History(price: "91201.73371438966", timestamp: TimeInterval(1736773800)),
-                                CoinHistory.History(price: "90813.73371438966", timestamp: TimeInterval(1736773500)),
-                                CoinHistory.History(price: "90782.73371438966", timestamp: TimeInterval(1736773200)),
-                                CoinHistory.History(price: "90821.73371438966", timestamp: TimeInterval(1736772900)),
-                                CoinHistory.History(price: "90613.73371438966", timestamp: TimeInterval(1736772600)),
-                              ]
-    )
+    let history = [
+        CoinHistory(price: "91641.73371438966", timestamp: TimeInterval(1736774700)),
+        CoinHistory(price: "91579.73371438966", timestamp: TimeInterval(1736774400)),
+        CoinHistory(price: "91351.73371438966", timestamp: TimeInterval(1736774100)),
+        CoinHistory(price: "91201.73371438966", timestamp: TimeInterval(1736773800)),
+        CoinHistory(price: "90813.73371438966", timestamp: TimeInterval(1736773500)),
+        CoinHistory(price: "90782.73371438966", timestamp: TimeInterval(1736773200)),
+        CoinHistory(price: "90821.73371438966", timestamp: TimeInterval(1736772900)),
+        CoinHistory(price: "90613.73371438966", timestamp: TimeInterval(1736772600)),
+    ]
 
     return CoinDetailsView(details: details, history: history)
 }
