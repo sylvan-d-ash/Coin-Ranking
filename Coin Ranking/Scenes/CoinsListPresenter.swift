@@ -16,6 +16,8 @@ protocol CoinsListView: AnyObject {
 
 @MainActor
 final class CoinsListPresenter {
+    static let maximumCoins = 100
+
     private weak var view: CoinsListView?
     private let service: CoinsListServiceProtocol
     private let store: FavouritesStoreProtocol
@@ -31,7 +33,7 @@ final class CoinsListPresenter {
     }
 
     func fetchCoins() async {
-        guard !isLoading else { return }
+        guard !isLoading, coins.count < Self.maximumCoins else { return }
         isLoading = true
         view?.showLoading()
 

@@ -41,11 +41,14 @@ final class FavouriteCoinsPresenter {
     }
 
     private func fetchFavourites() async {
-        guard !isLoading else { return }
+        guard !isLoading, coins.count < CoinsListPresenter.maximumCoins else { return }
+
+        let allFavourites = store.allFavourites()
+        guard coins.count < allFavourites.count else { return }
         isLoading = true
         view?.showLoading()
 
-        let result = await service.fetchFavouriteCoins(with: store.allFavourites(), page: currentPage)
+        let result = await service.fetchFavouriteCoins(with: allFavourites, page: currentPage)
         switch result {
         case .failure(let error):
             view?.display(error.localizedDescription)

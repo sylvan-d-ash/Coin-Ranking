@@ -118,6 +118,12 @@ extension CoinsListViewController: UITableViewDataSource {
         let coin = coins[indexPath.row]
         cell.configure(with: coin, forRowAt: indexPath.row)
 
+        if indexPath.row == (coins.count - 1) {
+            Task {
+                await presenter.loadMore()
+            }
+        }
+
         return cell
     }
 
