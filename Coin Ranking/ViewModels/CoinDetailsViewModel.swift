@@ -36,8 +36,6 @@ final class CoinDetailsViewModel: ObservableObject {
         }
 
         isLoadingDetails = false
-
-        await fetchHistory()
     }
 
     func fetchHistory() async {
