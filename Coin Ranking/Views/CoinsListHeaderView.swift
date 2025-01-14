@@ -9,22 +9,35 @@ import SwiftUI
 
 struct CoinsListHeaderView: View {
     private typealias Dimensions = CoinRowView.Dimensions
-    
+    @StateObject var viewModel: SortOptionsViewModel
+
     var body: some View {
         HStack {
             Text("#")
                 .frame(width: Dimensions.rank, alignment: .leading)
 
-            Text("Market Cap")
+            SortButton(title: "Market Cap",
+                       isSelected: viewModel.selectedOption == .marketCap,
+                       sortDirection: viewModel.sortDirection,
+                       indicatorPosition: .suffix,
+                       action: { viewModel.selectedOption(.marketCap) })
 
             Spacer()
 
-            Text("Price")
-                .frame(width: Dimensions.price, alignment: .trailing)
+            SortButton(title: "Price",
+                       isSelected: viewModel.selectedOption == .price,
+                       sortDirection: viewModel.sortDirection,
+                       indicatorPosition: .prefix,
+                       action: { viewModel.selectedOption(.price) })
+            .frame(width: Dimensions.price, alignment: .trailing)
 
-            Text("24H")
-                .frame(width: Dimensions.change)
-                .padding(.leading, Dimensions.padding)
+            SortButton(title: "24H",
+                       isSelected: viewModel.selectedOption == .volume,
+                       sortDirection: viewModel.sortDirection,
+                       indicatorPosition: .prefix,
+                       action: { viewModel.selectedOption(.volume) })
+            .frame(width: Dimensions.change, alignment: .trailing)
+            .padding(.leading, Dimensions.padding)
         }
         .font(.headline)
         .bold()
@@ -33,8 +46,12 @@ struct CoinsListHeaderView: View {
         .background(Color("AppBlack"))
         .foregroundStyle(Color.white)
     }
+
+    private func tappedOption(_ option: SortOption) {
+        viewModel.selectedOption(option)
+    }
 }
 
 #Preview {
-    CoinsListHeaderView()
+    CoinsListHeaderView(viewModel: SortOptionsViewModel())
 }

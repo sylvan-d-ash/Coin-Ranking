@@ -26,11 +26,6 @@ final class CoinDetailsViewController: UIViewController {
         super.viewDidLoad()
         setupNavigationBar()
         setupSubviews()
-
-//        Task {
-//            await viewModel.fetchDetails()
-//            await viewModel.fetchHistory()
-//        }
     }
 }
 

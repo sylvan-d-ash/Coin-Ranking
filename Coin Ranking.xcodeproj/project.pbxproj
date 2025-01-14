@@ -35,6 +35,7 @@
 		5ECBD4EF2D357448008220AA /* CoinHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4EE2D357448008220AA /* CoinHistoryView.swift */; };
 		5ECBD4F22D357692008220AA /* CoinDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4F12D357692008220AA /* CoinDetailsViewModel.swift */; };
 		5ECBD4F42D35781F008220AA /* CoinDetailsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4F32D35781F008220AA /* CoinDetailsService.swift */; };
+		5ECBD4F62D369D0D008220AA /* SortButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4F52D369D0D008220AA /* SortButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,7 @@
 		5ECBD4EE2D357448008220AA /* CoinHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinHistoryView.swift; sourceTree = "<group>"; };
 		5ECBD4F12D357692008220AA /* CoinDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailsViewModel.swift; sourceTree = "<group>"; };
 		5ECBD4F32D35781F008220AA /* CoinDetailsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailsService.swift; sourceTree = "<group>"; };
+		5ECBD4F52D369D0D008220AA /* SortButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +177,7 @@
 				5ECBD4D82D340DE0008220AA /* SortOptionsView.swift */,
 				5ECBD4DE2D342795008220AA /* CoinRowView.swift */,
 				5ECBD4E42D34BD65008220AA /* CoinsListHeaderView.swift */,
+				5ECBD4F52D369D0D008220AA /* SortButton.swift */,
 				5ECBD4E62D354D38008220AA /* CoinDetailsView.swift */,
 				5ECBD4EC2D3572DE008220AA /* CoinStatisticsView.swift */,
 				5ECBD4EE2D357448008220AA /* CoinHistoryView.swift */,
@@ -285,6 +288,7 @@
 				5ECBD4E32D343A6D008220AA /* CoinDetailsViewController.swift in Sources */,
 				5ECBD4D62D340CBC008220AA /* SortOption.swift in Sources */,
 				5ECBD4F22D357692008220AA /* CoinDetailsViewModel.swift in Sources */,
+				5ECBD4F62D369D0D008220AA /* SortButton.swift in Sources */,
 				5ECBD4CB2D329103008220AA /* CoinsListPresenter.swift in Sources */,
 				5ECBD4E12D342DB5008220AA /* CoinRowTableViewCell.swift in Sources */,
 			);
