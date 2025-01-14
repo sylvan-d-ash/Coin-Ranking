@@ -115,7 +115,9 @@ private extension CoinsListViewController {
             return
         }
 
-        presenter.sortCoins(by: option, direction: sortOptionsViewModel.sortDirection)
+        Task {
+            await presenter.sortCoins(by: option, direction: sortOptionsViewModel.sortDirection)
+        }
     }
 }
 
