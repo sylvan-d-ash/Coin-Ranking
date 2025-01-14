@@ -1,5 +1,5 @@
 //
-//  FiltersView.swift
+//  SortOptionsView.swift
 //  Coin Ranking
 //
 //  Created by Sylvan Ash on 12/01/2025.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct FiltersView: View {
-    var filters: [FilterOption]
-    @ObservedObject var viewModel: FiltersViewModel
+struct SortOptionsView: View {
+    var sortOptions: [SortOption]
+    @ObservedObject var viewModel: SortOptionsViewModel
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -18,25 +18,24 @@ struct FiltersView: View {
                 .foregroundStyle(Color.white)
 
             HStack {
-                ForEach(filters, id: \.self) { filter in
-                    Text(filter.displayValue)
+                ForEach(sortOptions, id: \.self) { option in
+                    Text(option.displayValue)
                         .padding(10)
                         .background(
-                            viewModel.selectedFilter == filter ? Color.white : Color("AppGray")
+                            viewModel.selectedOption == option ? Color.white : Color("AppGray")
                         )
                         .foregroundStyle(
-                            viewModel.selectedFilter == filter ? Color("AppGray") : Color.white
+                            viewModel.selectedOption == option ? Color("AppGray") : Color.white
                         )
                         .overlay {
                             RoundedRectangle(cornerRadius: 25)
-                                .stroke(viewModel.selectedFilter == filter ? Color.white : Color("AppGray"))
+                                .stroke(viewModel.selectedOption == option ? Color.white : Color("AppGray"))
                         }
                         .clipShape(
                             RoundedRectangle(cornerRadius: 25, style: .continuous)
                         )
                         .onTapGesture {
-                            print("tapped: \(filter.displayValue)")
-                            viewModel.selectedFilter = filter
+                            viewModel.selectedOption = option
                         }
                 }
 
@@ -50,5 +49,5 @@ struct FiltersView: View {
 }
 
 #Preview {
-    FiltersView(filters: FilterOption.allCases, viewModel: FiltersViewModel())
+    SortOptionsView(sortOptions: SortOption.allCases, viewModel: SortOptionsViewModel())
 }

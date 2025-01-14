@@ -20,17 +20,15 @@ class CoinsListViewController: UIViewController {
 
     private var presenter: CoinsListPresenter!
     private var coins: [Coin] = []
-
-    private var selectedFilter: FilterOption?
-    private let filtersViewModel = FiltersViewModel()
+    private let sortOptionsViewModel = SortOptionsViewModel()
     private var cancellables = Set<AnyCancellable>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter = CoinsListPresenter(view: self)
+
         setupNavigationBar()
         setupSubviews()
-
-        presenter = CoinsListPresenter(view: self)
 
         Task {
             await presenter.fetchCoins()
@@ -68,16 +66,13 @@ private extension CoinsListViewController {
     func setupSubviews() {
         view.backgroundColor = .appBlack
 
-        let filtersView = FiltersView(filters: FilterOption.allCases, viewModel: filtersViewModel)
-        filtersViewModel.$selectedFilter.sink { [weak self] filter in
+        let sortOptionsView = SortOptionsView(sortOptions: SortOption.allCases, viewModel: sortOptionsViewModel)
+        sortOptionsViewModel.$selectedOption.sink { [weak self] option in
             guard let self = self else { return }
-
-            if filter == .marketCap {
-                print("Can be equated")
-            }
+            self.presenter.sortCoins(by: option)
         }.store(in: &cancellables)
-        
-        let hostingController = UIHostingController(rootView: filtersView)
+
+        let hostingController = UIHostingController(rootView: sortOptionsView)
         addChild(hostingController)
         view.addSubview(hostingController.view)
 

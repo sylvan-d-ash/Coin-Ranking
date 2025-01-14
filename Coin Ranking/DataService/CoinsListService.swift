@@ -8,7 +8,7 @@
 import Foundation
 
 enum CoinsListEndpoint: APIEndpoint {
-    case getCoins(page: Int)
+    case getCoins(page: Int, sortOption: SortOption?)
     case getFavourites(uuids: [String], page: Int)
 
     var path: String { return "/coins" }
@@ -17,11 +17,15 @@ enum CoinsListEndpoint: APIEndpoint {
         let limit = 20
 
         switch self {
-        case .getCoins(let page):
-            return [
+        case .getCoins(let page, let sortOption):
+            var params: [String : Any] = [
                 "offset": (page - 1) * limit,
                 "limit": limit
             ]
+            if let option = sortOption {
+                params["orderBy"] = option.apiValue
+            }
+            return params
         case .getFavourites(let uuids, let page):
             return [
                 "offset": (page - 1) * limit,
@@ -33,7 +37,7 @@ enum CoinsListEndpoint: APIEndpoint {
 }
 
 protocol CoinsListServiceProtocol: AnyObject {
-    func fetchCoins(page: Int) async -> Result<CoinAPIResponse, Error>
+    func fetchCoins(page: Int, sortOption: SortOption?) async -> Result<CoinAPIResponse, Error>
     func fetchFavouriteCoins(with uuids: [String], page: Int) async -> Result<CoinAPIResponse, Error>
 }
 
@@ -44,8 +48,8 @@ class CoinsListService: CoinsListServiceProtocol {
         self.apiClient = apiClient
     }
 
-    func fetchCoins(page: Int) async -> Result<CoinAPIResponse, Error> {
-        let endpoint = CoinsListEndpoint.getCoins(page: page)
+    func fetchCoins(page: Int, sortOption: SortOption?) async -> Result<CoinAPIResponse, Error> {
+        let endpoint = CoinsListEndpoint.getCoins(page: page, sortOption: sortOption)
         return await apiClient.request(endpoint)
     }
 

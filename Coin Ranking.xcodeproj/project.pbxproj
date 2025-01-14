@@ -21,10 +21,9 @@
 		5ECBD4CD2D33F3CB008220AA /* FavouritesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4CC2D33F3CB008220AA /* FavouritesStore.swift */; };
 		5ECBD4CF2D33F9AC008220AA /* FavouriteCoinsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4CE2D33F9AC008220AA /* FavouriteCoinsPresenter.swift */; };
 		5ECBD4D42D340ACA008220AA /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4D32D340ACA008220AA /* String.swift */; };
-		5ECBD4D62D340CBC008220AA /* FilterOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4D52D340CBC008220AA /* FilterOption.swift */; };
-		5ECBD4D92D340DE0008220AA /* FiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4D82D340DE0008220AA /* FiltersView.swift */; };
-		5ECBD4DB2D342214008220AA /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4DA2D342214008220AA /* TestView.swift */; };
-		5ECBD4DD2D342431008220AA /* FiltersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4DC2D342431008220AA /* FiltersViewModel.swift */; };
+		5ECBD4D62D340CBC008220AA /* SortOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4D52D340CBC008220AA /* SortOption.swift */; };
+		5ECBD4D92D340DE0008220AA /* SortOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4D82D340DE0008220AA /* SortOptionsView.swift */; };
+		5ECBD4DD2D342431008220AA /* SortOptionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4DC2D342431008220AA /* SortOptionsViewModel.swift */; };
 		5ECBD4DF2D342795008220AA /* CoinRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4DE2D342795008220AA /* CoinRowView.swift */; };
 		5ECBD4E12D342DB5008220AA /* CoinRowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4E02D342DB5008220AA /* CoinRowTableViewCell.swift */; };
 		5ECBD4E32D343A6D008220AA /* CoinDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4E22D343A6D008220AA /* CoinDetailsViewController.swift */; };
@@ -56,10 +55,9 @@
 		5ECBD4CC2D33F3CB008220AA /* FavouritesStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesStore.swift; sourceTree = "<group>"; };
 		5ECBD4CE2D33F9AC008220AA /* FavouriteCoinsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteCoinsPresenter.swift; sourceTree = "<group>"; };
 		5ECBD4D32D340ACA008220AA /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
-		5ECBD4D52D340CBC008220AA /* FilterOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterOption.swift; sourceTree = "<group>"; };
-		5ECBD4D82D340DE0008220AA /* FiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersView.swift; sourceTree = "<group>"; };
-		5ECBD4DA2D342214008220AA /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
-		5ECBD4DC2D342431008220AA /* FiltersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersViewModel.swift; sourceTree = "<group>"; };
+		5ECBD4D52D340CBC008220AA /* SortOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortOption.swift; sourceTree = "<group>"; };
+		5ECBD4D82D340DE0008220AA /* SortOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortOptionsView.swift; sourceTree = "<group>"; };
+		5ECBD4DC2D342431008220AA /* SortOptionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortOptionsViewModel.swift; sourceTree = "<group>"; };
 		5ECBD4DE2D342795008220AA /* CoinRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRowView.swift; sourceTree = "<group>"; };
 		5ECBD4E02D342DB5008220AA /* CoinRowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRowTableViewCell.swift; sourceTree = "<group>"; };
 		5ECBD4E22D343A6D008220AA /* CoinDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailsViewController.swift; sourceTree = "<group>"; };
@@ -133,7 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				5ECBD4BF2D327B29008220AA /* Coin.swift */,
-				5ECBD4D52D340CBC008220AA /* FilterOption.swift */,
+				5ECBD4D52D340CBC008220AA /* SortOption.swift */,
 				5ECBD4E82D356FE3008220AA /* CoinDetails.swift */,
 				5ECBD4EA2D356FF8008220AA /* CoinHistory.swift */,
 			);
@@ -174,8 +172,7 @@
 		5ECBD4D72D340DC8008220AA /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5ECBD4D82D340DE0008220AA /* FiltersView.swift */,
-				5ECBD4DA2D342214008220AA /* TestView.swift */,
+				5ECBD4D82D340DE0008220AA /* SortOptionsView.swift */,
 				5ECBD4DE2D342795008220AA /* CoinRowView.swift */,
 				5ECBD4E42D34BD65008220AA /* CoinsListHeaderView.swift */,
 				5ECBD4E62D354D38008220AA /* CoinDetailsView.swift */,
@@ -188,7 +185,7 @@
 		5ECBD4F02D35766A008220AA /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				5ECBD4DC2D342431008220AA /* FiltersViewModel.swift */,
+				5ECBD4DC2D342431008220AA /* SortOptionsViewModel.swift */,
 				5ECBD4F12D357692008220AA /* CoinDetailsViewModel.swift */,
 			);
 			path = ViewModels;
@@ -267,15 +264,14 @@
 			files = (
 				5ECBD4E92D356FE3008220AA /* CoinDetails.swift in Sources */,
 				5ECBD4EB2D356FF8008220AA /* CoinHistory.swift in Sources */,
-				5ECBD4DB2D342214008220AA /* TestView.swift in Sources */,
 				5ECBD4ED2D3572DE008220AA /* CoinStatisticsView.swift in Sources */,
-				5ECBD4D92D340DE0008220AA /* FiltersView.swift in Sources */,
+				5ECBD4D92D340DE0008220AA /* SortOptionsView.swift in Sources */,
 				5ECBD4E72D354D38008220AA /* CoinDetailsView.swift in Sources */,
 				5ECBD4EF2D357448008220AA /* CoinHistoryView.swift in Sources */,
 				5ECBD4C22D327D41008220AA /* CoinsListService.swift in Sources */,
 				5ECBD4D42D340ACA008220AA /* String.swift in Sources */,
 				5ECBD4F42D35781F008220AA /* CoinDetailsService.swift in Sources */,
-				5ECBD4DD2D342431008220AA /* FiltersViewModel.swift in Sources */,
+				5ECBD4DD2D342431008220AA /* SortOptionsViewModel.swift in Sources */,
 				5ECBD4CD2D33F3CB008220AA /* FavouritesStore.swift in Sources */,
 				5ECBD4AB2D326F14008220AA /* CoinsListViewController.swift in Sources */,
 				5ECBD4CF2D33F9AC008220AA /* FavouriteCoinsPresenter.swift in Sources */,
@@ -287,7 +283,7 @@
 				5ECBD4C02D327B29008220AA /* Coin.swift in Sources */,
 				5ECBD4BD2D32750D008220AA /* APIClient.swift in Sources */,
 				5ECBD4E32D343A6D008220AA /* CoinDetailsViewController.swift in Sources */,
-				5ECBD4D62D340CBC008220AA /* FilterOption.swift in Sources */,
+				5ECBD4D62D340CBC008220AA /* SortOption.swift in Sources */,
 				5ECBD4F22D357692008220AA /* CoinDetailsViewModel.swift in Sources */,
 				5ECBD4CB2D329103008220AA /* CoinsListPresenter.swift in Sources */,
 				5ECBD4E12D342DB5008220AA /* CoinRowTableViewCell.swift in Sources */,

@@ -25,6 +25,7 @@ final class CoinsListPresenter {
     private var coins = [Coin]()
     private var isLoading = false
     private var currentPage = 1
+    private var selectedSortOption: SortOption?
 
     init(view: CoinsListView?, service: CoinsListServiceProtocol = CoinsListService(), store: FavouritesStoreProtocol = FavouritesStore.shared) {
         self.view = view
@@ -37,7 +38,7 @@ final class CoinsListPresenter {
         isLoading = true
         view?.showLoading()
 
-        let result = await service.fetchCoins(page: currentPage)
+        let result = await service.fetchCoins(page: currentPage, sortOption: selectedSortOption)
         switch result {
         case .failure(let error):
             view?.display(error.localizedDescription)
@@ -65,5 +66,16 @@ final class CoinsListPresenter {
 
     func isFavourite(_ uuid: String) -> Bool {
         return store.isFavourite(uuid)
+    }
+
+    func sortCoins(by option: SortOption?) {
+        guard let option = option, option != selectedSortOption else { return }
+        selectedSortOption = option
+        coins = []
+        currentPage = 1
+
+        Task {
+            await fetchCoins()
+        }
     }
 }
