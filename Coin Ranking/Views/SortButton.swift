@@ -29,6 +29,8 @@ struct SortButton: View {
                 }
 
                 Text(title)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.5)
 
                 if indicatorPosition == .suffix, isSelected {
                     Image(systemName: sortDirection == .descending ? "chevron.down" : "chevron.up")

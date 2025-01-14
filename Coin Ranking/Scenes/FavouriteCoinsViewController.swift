@@ -9,6 +9,18 @@ import UIKit
 import SwiftUI
 import Combine
 
+/**
+ NOTE:
+ FavouriteCoinsViewController and CoinsListViewController have exactly the same UI, and the functionality
+ is more or less the same. The only differences are:
+ - navigation bar title
+ - trailing swipe action
+ - view did appear
+
+ As such, the code between the two can be further simplified to reduce repetition. Alas, for interests of
+ time, that can only be done later.
+ */
+
 final class FavouriteCoinsViewController: UIViewController {
     private let tableview = UITableView(frame: .zero, style: .plain)
     private let loadingIndicator: UIActivityIndicatorView = {
@@ -51,11 +63,11 @@ private extension FavouriteCoinsViewController {
         view.backgroundColor = .appBlack
 
         // setup header
-        let header = CoinsListHeaderView(viewModel: SortOptionsViewModel())
+        let header = CoinsListHeaderView(viewModel: self.sortOptionsViewModel)
 
         sortOptionsViewModel.$selectedOption.sink { [weak self] option in
             guard let self = self else { return }
-            self.sortOptionWasSelected()
+            self.sortOptionWasSelected(option)
         }.store(in: &cancellables)
 
         let hostingController = UIHostingController(rootView: header)
@@ -87,7 +99,7 @@ private extension FavouriteCoinsViewController {
         ])
     }
 
-    func sortOptionWasSelected() {
+    func sortOptionWasSelected(_ option: SortOption) {
         // Initially adding the sink to the sort view model seems to trigger a call. This might be because
         // the `selectedOption` in the view model has a default value. Either way, we don't want to do anything
         // during the initial setup. So exit if that is the case
@@ -96,7 +108,7 @@ private extension FavouriteCoinsViewController {
             return
         }
 
-        presenter.sortCoins(by: sortOptionsViewModel.selectedOption, direction: sortOptionsViewModel.sortDirection)
+        presenter.sortCoins(by: option, direction: sortOptionsViewModel.sortDirection)
     }
 }
 

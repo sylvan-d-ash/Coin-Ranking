@@ -31,11 +31,11 @@ struct CoinsListHeaderView: View {
                        action: { viewModel.selectedOption(.price) })
             .frame(width: Dimensions.price, alignment: .trailing)
 
-            SortButton(title: "24H",
-                       isSelected: viewModel.selectedOption == .volume,
+            SortButton(title: "24h %",
+                       isSelected: viewModel.selectedOption == .change,
                        sortDirection: viewModel.sortDirection,
                        indicatorPosition: .prefix,
-                       action: { viewModel.selectedOption(.volume) })
+                       action: { viewModel.selectedOption(.change) })
             .frame(width: Dimensions.change, alignment: .trailing)
             .padding(.leading, Dimensions.padding)
         }

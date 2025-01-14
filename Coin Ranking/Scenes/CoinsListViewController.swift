@@ -74,7 +74,7 @@ private extension CoinsListViewController {
 
         sortOptionsViewModel.$selectedOption.sink { [weak self] option in
             guard let self = self else { return }
-            self.sortOptionWasSelected()
+            self.sortOptionWasSelected(option)
         }.store(in: &cancellables)
 
         let hostingController = UIHostingController(rootView: header)
@@ -106,7 +106,7 @@ private extension CoinsListViewController {
         ])
     }
 
-    func sortOptionWasSelected() {
+    func sortOptionWasSelected(_ option: SortOption) {
         // Initially adding the sink to the sort view model seems to trigger a call. This might be because
         // the `selectedOption` in the view model has a default value. Either way, we don't want to do anything
         // during the initial setup. So exit if that is the case
@@ -115,7 +115,7 @@ private extension CoinsListViewController {
             return
         }
 
-        presenter.sortCoins(by: sortOptionsViewModel.selectedOption, direction: sortOptionsViewModel.sortDirection)
+        presenter.sortCoins(by: option, direction: sortOptionsViewModel.sortDirection)
     }
 }
 
