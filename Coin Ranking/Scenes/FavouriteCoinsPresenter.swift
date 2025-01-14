@@ -44,15 +44,12 @@ final class FavouriteCoinsPresenter {
         view?.display(coins)
     }
 
-    func sortCoins(by option: SortOption, direction: SortDirection) {
+    func sortCoins(by option: SortOption, direction: SortDirection) async {
         coins = []
         currentPage = 1
         selectedSortOption = option
         sortDirection = direction
-
-        Task {
-            await fetchFavourites()
-        }
+        await fetchFavourites()
     }
 
     private func fetchFavourites() async {
@@ -64,7 +61,10 @@ final class FavouriteCoinsPresenter {
         isLoading = true
         view?.showLoading()
 
-        let result = await service.fetchFavouriteCoins(with: allFavourites, page: currentPage)
+        let result = await service.fetchFavouriteCoins(uuids: allFavourites,
+                                                       page: currentPage,
+                                                       sortOption: selectedSortOption,
+                                                       sortDirection: sortDirection)
         switch result {
         case .failure(let error):
             view?.display(error.localizedDescription)
