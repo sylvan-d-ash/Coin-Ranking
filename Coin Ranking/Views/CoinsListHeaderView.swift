@@ -43,6 +43,7 @@ struct CoinsListHeaderView: View {
         .bold()
         .padding(.horizontal, Dimensions.padding)
         .padding(.vertical, 8)
+        .frame(height: 40)
         .background(Color("AppBlack"))
         .foregroundStyle(Color.white)
     }

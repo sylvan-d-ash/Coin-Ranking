@@ -8,7 +8,7 @@
 import Foundation
 
 final class SortOptionsViewModel: ObservableObject {
-    @Published var selectedOption: SortOption? = .marketCap
+    @Published var selectedOption: SortOption = .marketCap
     @Published var sortDirection: SortDirection = .descending
 
     func selectedOption(_ option: SortOption) {

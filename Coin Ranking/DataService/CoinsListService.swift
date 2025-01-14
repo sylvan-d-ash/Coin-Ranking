@@ -8,7 +8,7 @@
 import Foundation
 
 enum CoinsListEndpoint: APIEndpoint {
-    case getCoins(page: Int, sortOption: SortOption?)
+    case getCoins(page: Int, sortOption: SortOption, sortDirection: SortDirection)
     case getFavourites(uuids: [String], page: Int)
 
     var path: String { return "/coins" }
@@ -17,15 +17,13 @@ enum CoinsListEndpoint: APIEndpoint {
         let limit = 20
 
         switch self {
-        case .getCoins(let page, let sortOption):
-            var params: [String : Any] = [
+        case .getCoins(let page, let sortOption, let sortDirection):
+            return [
                 "offset": (page - 1) * limit,
-                "limit": limit
+                "limit": limit,
+                "orderBy": sortOption.apiValue,
+                "orderDirection": sortDirection.apiValue
             ]
-            if let option = sortOption {
-                params["orderBy"] = option.apiValue
-            }
-            return params
         case .getFavourites(let uuids, let page):
             return [
                 "offset": (page - 1) * limit,
@@ -37,19 +35,19 @@ enum CoinsListEndpoint: APIEndpoint {
 }
 
 protocol CoinsListServiceProtocol: AnyObject {
-    func fetchCoins(page: Int, sortOption: SortOption?) async -> Result<CoinAPIResponse, Error>
+    func fetchCoins(page: Int, sortOption: SortOption, sortDirection: SortDirection) async -> Result<CoinAPIResponse, Error>
     func fetchFavouriteCoins(with uuids: [String], page: Int) async -> Result<CoinAPIResponse, Error>
 }
 
-class CoinsListService: CoinsListServiceProtocol {
+final class CoinsListService: CoinsListServiceProtocol {
     let apiClient: APIClient
 
     init(apiClient: APIClient = URLSessionAPIClient()) {
         self.apiClient = apiClient
     }
 
-    func fetchCoins(page: Int, sortOption: SortOption?) async -> Result<CoinAPIResponse, Error> {
-        let endpoint = CoinsListEndpoint.getCoins(page: page, sortOption: sortOption)
+    func fetchCoins(page: Int, sortOption: SortOption, sortDirection: SortDirection) async -> Result<CoinAPIResponse, Error> {
+        let endpoint = CoinsListEndpoint.getCoins(page: page, sortOption: sortOption, sortDirection: sortDirection)
         return await apiClient.request(endpoint)
     }
 

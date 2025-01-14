@@ -10,15 +10,20 @@ import Foundation
 enum SortDirection {
     case ascending
     case descending
+
+    var apiValue: String {
+        switch self {
+        case .descending: return "desc"
+        case .ascending: return "asc"
+        }
+    }
 }
 
 enum SortOption: CaseIterable, Equatable {
     case marketCap
     case price
     case volume
-}
 
-extension SortOption {
     var displayValue: String {
         switch self {
         case .price: return "Price"
