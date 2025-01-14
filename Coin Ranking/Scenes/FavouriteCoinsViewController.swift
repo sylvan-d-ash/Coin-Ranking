@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftUI
+import Combine
 
 final class FavouriteCoinsViewController: UIViewController {
     private let tableview = UITableView(frame: .zero, style: .plain)
@@ -19,6 +20,9 @@ final class FavouriteCoinsViewController: UIViewController {
 
     private var presenter: FavouriteCoinsPresenter!
     private var coins: [Coin] = []
+    private let sortOptionsViewModel = SortOptionsViewModel()
+    private var cancellables = Set<AnyCancellable>()
+    private var isSetup = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +50,28 @@ private extension FavouriteCoinsViewController {
     func setupSubviews() {
         view.backgroundColor = .appBlack
 
+        // setup header
+        let header = CoinsListHeaderView(viewModel: SortOptionsViewModel())
+
+        sortOptionsViewModel.$selectedOption.sink { [weak self] option in
+            guard let self = self else { return }
+            self.sortOptionWasSelected()
+        }.store(in: &cancellables)
+
+        let hostingController = UIHostingController(rootView: header)
+        addChild(hostingController)
+        view.addSubview(hostingController.view)
+
+        hostingController.view.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            hostingController.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            hostingController.view.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            hostingController.view.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            hostingController.view.heightAnchor.constraint(equalToConstant: 40),
+        ])
+        hostingController.didMove(toParent: self)
+
+        // setup table view
         tableview.register(CoinRowTableViewCell.self, forCellReuseIdentifier: CoinRowTableViewCell.reuseIdentifier)
         tableview.backgroundColor = .appBlack
         tableview.dataSource = self
@@ -54,11 +80,23 @@ private extension FavouriteCoinsViewController {
 
         tableview.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            tableview.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableview.topAnchor.constraint(equalTo: hostingController.view.bottomAnchor),
             tableview.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableview.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableview.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
+    }
+
+    func sortOptionWasSelected() {
+        // Initially adding the sink to the sort view model seems to trigger a call. This might be because
+        // the `selectedOption` in the view model has a default value. Either way, we don't want to do anything
+        // during the initial setup. So exit if that is the case
+        if isSetup {
+            isSetup = false
+            return
+        }
+
+        presenter.sortCoins(by: sortOptionsViewModel.selectedOption, direction: sortOptionsViewModel.sortDirection)
     }
 }
 
@@ -103,26 +141,6 @@ extension FavouriteCoinsViewController: UITableViewDataSource {
         }
 
         return cell
-    }
-
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = CoinsListHeaderView()
-        let hostingController = UIHostingController(rootView: header)
-        addChild(hostingController)
-
-        let view = UIView(frame: .zero)
-        view.addSubview(hostingController.view)
-
-        hostingController.view.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            hostingController.view.topAnchor.constraint(equalTo: view.topAnchor),
-            hostingController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            hostingController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            hostingController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-        ])
-        hostingController.didMove(toParent: self)
-
-        return view
     }
 }
 

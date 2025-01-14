@@ -16,6 +16,8 @@ final class FavouriteCoinsPresenter {
     private var coins = [Coin]()
     private var isLoading = false
     private var currentPage = 1
+    private var selectedSortOption: SortOption = .marketCap
+    private var sortDirection: SortDirection = .descending
 
     init(view: CoinsListView?, service: CoinsListServiceProtocol = CoinsListService(), store: FavouritesStoreProtocol = FavouritesStore.shared) {
         self.view = view
@@ -25,7 +27,9 @@ final class FavouriteCoinsPresenter {
 
     func viewDidAppear() async {
         coins = []
-        guard !store.allFavourites().isEmpty else { return }
+        currentPage = 1
+        selectedSortOption = .marketCap
+        sortDirection = .descending
         await fetchFavourites()
     }
 
@@ -40,11 +44,23 @@ final class FavouriteCoinsPresenter {
         view?.display(coins)
     }
 
+    func sortCoins(by option: SortOption, direction: SortDirection) {
+        coins = []
+        currentPage = 1
+        selectedSortOption = option
+        sortDirection = direction
+
+        Task {
+            await fetchFavourites()
+        }
+    }
+
     private func fetchFavourites() async {
         guard !isLoading, coins.count < CoinsListPresenter.maximumCoins else { return }
 
         let allFavourites = store.allFavourites()
-        guard coins.count < allFavourites.count else { return }
+        guard !allFavourites.isEmpty, coins.count < allFavourites.count else { return }
+
         isLoading = true
         view?.showLoading()
 
