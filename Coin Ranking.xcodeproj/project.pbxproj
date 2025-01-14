@@ -35,7 +35,18 @@
 		5ECBD4F22D357692008220AA /* CoinDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4F12D357692008220AA /* CoinDetailsViewModel.swift */; };
 		5ECBD4F42D35781F008220AA /* CoinDetailsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4F32D35781F008220AA /* CoinDetailsService.swift */; };
 		5ECBD4F62D369D0D008220AA /* SortButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4F52D369D0D008220AA /* SortButton.swift */; };
+		5ECBD4FE2D36B14B008220AA /* Coin_RankingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD4FD2D36B14B008220AA /* Coin_RankingTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5ECBD4FF2D36B14B008220AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5ECBD49B2D326F14008220AA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5ECBD4A22D326F14008220AA;
+			remoteInfo = "Coin Ranking";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		5ECBD4A32D326F14008220AA /* Coin Ranking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Coin Ranking.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,10 +80,19 @@
 		5ECBD4F12D357692008220AA /* CoinDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailsViewModel.swift; sourceTree = "<group>"; };
 		5ECBD4F32D35781F008220AA /* CoinDetailsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailsService.swift; sourceTree = "<group>"; };
 		5ECBD4F52D369D0D008220AA /* SortButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortButton.swift; sourceTree = "<group>"; };
+		5ECBD4FB2D36B14B008220AA /* Coin RankingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Coin RankingTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5ECBD4FD2D36B14B008220AA /* Coin_RankingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin_RankingTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		5ECBD4A02D326F14008220AA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5ECBD4F82D36B14B008220AA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -87,6 +107,7 @@
 			children = (
 				5ECBD4BA2D32705D008220AA /* secrets.xcconfig */,
 				5ECBD4A52D326F14008220AA /* Coin Ranking */,
+				5ECBD4FC2D36B14B008220AA /* Coin RankingTests */,
 				5ECBD4A42D326F14008220AA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -95,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				5ECBD4A32D326F14008220AA /* Coin Ranking.app */,
+				5ECBD4FB2D36B14B008220AA /* Coin RankingTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -191,6 +213,14 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		5ECBD4FC2D36B14B008220AA /* Coin RankingTests */ = {
+			isa = PBXGroup;
+			children = (
+				5ECBD4FD2D36B14B008220AA /* Coin_RankingTests.swift */,
+			);
+			path = "Coin RankingTests";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -211,6 +241,24 @@
 			productReference = 5ECBD4A32D326F14008220AA /* Coin Ranking.app */;
 			productType = "com.apple.product-type.application";
 		};
+		5ECBD4FA2D36B14B008220AA /* Coin RankingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5ECBD5032D36B14B008220AA /* Build configuration list for PBXNativeTarget "Coin RankingTests" */;
+			buildPhases = (
+				5ECBD4F72D36B14B008220AA /* Sources */,
+				5ECBD4F82D36B14B008220AA /* Frameworks */,
+				5ECBD4F92D36B14B008220AA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5ECBD5002D36B14B008220AA /* PBXTargetDependency */,
+			);
+			name = "Coin RankingTests";
+			productName = "Coin RankingTests";
+			productReference = 5ECBD4FB2D36B14B008220AA /* Coin RankingTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -223,6 +271,10 @@
 				TargetAttributes = {
 					5ECBD4A22D326F14008220AA = {
 						CreatedOnToolsVersion = 15.0.1;
+					};
+					5ECBD4FA2D36B14B008220AA = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = 5ECBD4A22D326F14008220AA;
 					};
 				};
 			};
@@ -240,6 +292,7 @@
 			projectRoot = "";
 			targets = (
 				5ECBD4A22D326F14008220AA /* Coin Ranking */,
+				5ECBD4FA2D36B14B008220AA /* Coin RankingTests */,
 			);
 		};
 /* End PBXProject section */
@@ -252,6 +305,13 @@
 				5ECBD4B32D326F16008220AA /* LaunchScreen.storyboard in Resources */,
 				5ECBD4B02D326F16008220AA /* Assets.xcassets in Resources */,
 				5ECBD4AE2D326F14008220AA /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5ECBD4F92D36B14B008220AA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,7 +350,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5ECBD4F72D36B14B008220AA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5ECBD4FE2D36B14B008220AA /* Coin_RankingTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5ECBD5002D36B14B008220AA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5ECBD4A22D326F14008220AA /* Coin Ranking */;
+			targetProxy = 5ECBD4FF2D36B14B008220AA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		5ECBD4AC2D326F14008220AA /* Main.storyboard */ = {
@@ -487,6 +563,42 @@
 			};
 			name = Release;
 		};
+		5ECBD5012D36B14B008220AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KL48363826;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.daitensai.Coin-RankingTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Coin Ranking.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Coin Ranking";
+			};
+			name = Debug;
+		};
+		5ECBD5022D36B14B008220AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KL48363826;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.daitensai.Coin-RankingTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Coin Ranking.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Coin Ranking";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -504,6 +616,15 @@
 			buildConfigurations = (
 				5ECBD4B82D326F16008220AA /* Debug */,
 				5ECBD4B92D326F16008220AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5ECBD5032D36B14B008220AA /* Build configuration list for PBXNativeTarget "Coin RankingTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5ECBD5012D36B14B008220AA /* Debug */,
+				5ECBD5022D36B14B008220AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
