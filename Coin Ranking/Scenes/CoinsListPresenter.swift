@@ -69,14 +69,11 @@ final class CoinsListPresenter {
         return store.isFavourite(uuid)
     }
 
-    func sortCoins(by option: SortOption, direction: SortDirection) {
+    func sortCoins(by option: SortOption, direction: SortDirection) async {
         selectedSortOption = option
         sortDirection = direction
         coins = []
         currentPage = 1
-
-        Task {
-            await fetchCoins()
-        }
+        await fetchCoins()
     }
 }
