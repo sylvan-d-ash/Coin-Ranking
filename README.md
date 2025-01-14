@@ -14,9 +14,9 @@ top 100 cryptocurrency coins paginated, showing 20 characters per page.
 ## Setup
 
 - Create a test account for the CoinRanking API to get a test API KEY
-- On Xcode, add a `secrets.config` file
-- Copy and paste the code for `secrets-sample.config` file to `secrets.config` and replace the values accordingly
-  - `secrets-sample.config` is not added to Xcode but is part of the project files
+- On Xcode, add a `secrets.xcconfig` file
+- Copy and paste the code for `secrets-sample.xcconfig` file to `secrets.xcconfig` and replace the values accordingly
+  - `secrets-sample.xcconfig` is not added to Xcode but is part of the project files
 - Run the project on Xcode
 
 ## Attributions
