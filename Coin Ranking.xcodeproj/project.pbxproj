@@ -39,6 +39,7 @@
 		5ECBD5052D36B3D2008220AA /* MockFavouritesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD5042D36B3D2008220AA /* MockFavouritesStore.swift */; };
 		5ECBD5072D36B403008220AA /* MockCoinsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD5062D36B403008220AA /* MockCoinsListView.swift */; };
 		5ECBD5092D36B489008220AA /* CoinsListPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD5082D36B489008220AA /* CoinsListPresenterTests.swift */; };
+		5ECBD50B2D36B6D5008220AA /* FavouriteCoinsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD50A2D36B6D5008220AA /* FavouriteCoinsPresenterTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,7 @@
 		5ECBD5042D36B3D2008220AA /* MockFavouritesStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFavouritesStore.swift; sourceTree = "<group>"; };
 		5ECBD5062D36B403008220AA /* MockCoinsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCoinsListView.swift; sourceTree = "<group>"; };
 		5ECBD5082D36B489008220AA /* CoinsListPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsListPresenterTests.swift; sourceTree = "<group>"; };
+		5ECBD50A2D36B6D5008220AA /* FavouriteCoinsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteCoinsPresenterTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +228,7 @@
 				5ECBD5042D36B3D2008220AA /* MockFavouritesStore.swift */,
 				5ECBD5062D36B403008220AA /* MockCoinsListView.swift */,
 				5ECBD5082D36B489008220AA /* CoinsListPresenterTests.swift */,
+				5ECBD50A2D36B6D5008220AA /* FavouriteCoinsPresenterTests.swift */,
 			);
 			path = "Coin RankingTests";
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 			files = (
 				5ECBD5072D36B403008220AA /* MockCoinsListView.swift in Sources */,
 				5ECBD4FE2D36B14B008220AA /* MockCoinsListService.swift in Sources */,
+				5ECBD50B2D36B6D5008220AA /* FavouriteCoinsPresenterTests.swift in Sources */,
 				5ECBD5052D36B3D2008220AA /* MockFavouritesStore.swift in Sources */,
 				5ECBD5092D36B489008220AA /* CoinsListPresenterTests.swift in Sources */,
 			);

@@ -36,7 +36,7 @@ enum CoinsListEndpoint: APIEndpoint {
 
 protocol CoinsListServiceProtocol: AnyObject {
     func fetchCoins(page: Int, sortOption: SortOption, sortDirection: SortDirection) async -> Result<CoinAPIResponse, Error>
-    func fetchFavouriteCoins(with uuids: [String], page: Int) async -> Result<CoinAPIResponse, Error>
+    func fetchFavouriteCoins(uuids: [String], page: Int, sortOption: SortOption, sortDirection: SortDirection) async -> Result<CoinAPIResponse, Error>
 }
 
 final class CoinsListService: CoinsListServiceProtocol {
@@ -51,7 +51,7 @@ final class CoinsListService: CoinsListServiceProtocol {
         return await apiClient.request(endpoint)
     }
 
-    func fetchFavouriteCoins(with uuids: [String], page: Int) async -> Result<CoinAPIResponse, Error> {
+    func fetchFavouriteCoins(uuids: [String], page: Int, sortOption: SortOption, sortDirection: SortDirection) async -> Result<CoinAPIResponse, Error> {
         let endpoint = CoinsListEndpoint.getFavourites(uuids: uuids, page: page)
         return await apiClient.request(endpoint)
     }
