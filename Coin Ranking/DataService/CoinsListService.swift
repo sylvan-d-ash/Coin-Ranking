@@ -9,7 +9,7 @@ import Foundation
 
 enum CoinsListEndpoint: APIEndpoint {
     case getCoins(page: Int, sortOption: SortOption, sortDirection: SortDirection)
-    case getFavourites(uuids: [String], page: Int)
+    case getFavourites(uuids: [String], page: Int, sortOption: SortOption, sortDirection: SortDirection)
 
     var path: String { return "/coins" }
 
@@ -24,11 +24,13 @@ enum CoinsListEndpoint: APIEndpoint {
                 "orderBy": sortOption.apiValue,
                 "orderDirection": sortDirection.apiValue
             ]
-        case .getFavourites(let uuids, let page):
+        case .getFavourites(let uuids, let page, let sortOption, let sortDirection):
             return [
                 "offset": (page - 1) * limit,
                 "limit": limit,
-                "uuids[]": uuids
+                "uuids[]": uuids,
+                "orderBy": sortOption.apiValue,
+                "orderDirection": sortDirection.apiValue
             ]
         }
     }
@@ -52,7 +54,7 @@ final class CoinsListService: CoinsListServiceProtocol {
     }
 
     func fetchFavouriteCoins(uuids: [String], page: Int, sortOption: SortOption, sortDirection: SortDirection) async -> Result<CoinAPIResponse, Error> {
-        let endpoint = CoinsListEndpoint.getFavourites(uuids: uuids, page: page)
+        let endpoint = CoinsListEndpoint.getFavourites(uuids: uuids, page: page, sortOption: sortOption, sortDirection: sortDirection)
         return await apiClient.request(endpoint)
     }
 }
