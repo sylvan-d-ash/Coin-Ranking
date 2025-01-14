@@ -22,6 +22,7 @@ class CoinsListViewController: UIViewController {
     private var coins: [Coin] = []
     private let sortOptionsViewModel = SortOptionsViewModel()
     private var cancellables = Set<AnyCancellable>()
+    private var isSetup = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,13 +67,17 @@ private extension CoinsListViewController {
     func setupSubviews() {
         view.backgroundColor = .appBlack
 
-        let sortOptionsView = SortOptionsView(sortOptions: SortOption.allCases, viewModel: sortOptionsViewModel)
+        // NOTE: this can't be added as a header in the tableview because every reload of the tableview
+        // would cause this to be reloaded, which will then trigger the `selectedOption` sink. And that
+        // will lead to infinite API calls and table reloads
+        let header = CoinsListHeaderView(viewModel: self.sortOptionsViewModel)
+
         sortOptionsViewModel.$selectedOption.sink { [weak self] option in
             guard let self = self else { return }
-            self.presenter.sortCoins(by: option)
+            self.sortOptionWasSelected()
         }.store(in: &cancellables)
 
-        let hostingController = UIHostingController(rootView: sortOptionsView)
+        let hostingController = UIHostingController(rootView: header)
         addChild(hostingController)
         view.addSubview(hostingController.view)
 
@@ -81,9 +86,11 @@ private extension CoinsListViewController {
             hostingController.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             hostingController.view.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             hostingController.view.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            hostingController.view.heightAnchor.constraint(equalToConstant: 40),
         ])
         hostingController.didMove(toParent: self)
 
+        // configure table view
         tableview.register(CoinRowTableViewCell.self, forCellReuseIdentifier: CoinRowTableViewCell.reuseIdentifier)
         tableview.backgroundColor = .appBlack
         tableview.dataSource = self
@@ -97,6 +104,18 @@ private extension CoinsListViewController {
             tableview.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableview.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
+    }
+
+    func sortOptionWasSelected() {
+        // Initially adding the sink to the sort view model seems to trigger a call. This might be because
+        // the `selectedOption` in the view model has a default value. Either way, we don't want to do anything
+        // during the initial setup. So exit if that is the case
+        if isSetup {
+            isSetup = false
+            return
+        }
+
+        presenter.sortCoins(by: sortOptionsViewModel.selectedOption, direction: sortOptionsViewModel.sortDirection)
     }
 }
 
@@ -113,6 +132,7 @@ extension CoinsListViewController: UITableViewDataSource {
         let coin = coins[indexPath.row]
         cell.configure(with: coin, forRowAt: indexPath.row)
 
+        // load more when the last row is loaded
         if indexPath.row == (coins.count - 1) {
             Task {
                 await presenter.loadMore()
@@ -120,26 +140,6 @@ extension CoinsListViewController: UITableViewDataSource {
         }
 
         return cell
-    }
-
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = CoinsListHeaderView()
-        let hostingController = UIHostingController(rootView: header)
-        addChild(hostingController)
-
-        let view = UIView(frame: .zero)
-        view.addSubview(hostingController.view)
-
-        hostingController.view.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            hostingController.view.topAnchor.constraint(equalTo: view.topAnchor),
-            hostingController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            hostingController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            hostingController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-        ])
-        hostingController.didMove(toParent: self)
-
-        return view
     }
 }
 
