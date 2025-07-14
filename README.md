@@ -1,9 +1,6 @@
 # Coin Ranking UIKit + SwiftUI App
 
-## Description
-
-A Swift app that uses both UIKit and SwiftUI to display the UI. The app fetches data from the [CointRanking API](https://api.coinranking.com/v2) and displays a list of the
-top 100 cryptocurrency coins paginated, showing 20 characters per page.
+The Coin-Ranking app is a Swift-based application that showcases a hybrid approach to UI development by integrating UIKit and SwiftUI. It fetches data from the [CointRanking API](https://api.coinranking.com/v2) to display a list of the top 100 cryptocurrencies, implementing pagination to efficiently manage data presentation. The app includes features for sorting and managing favorite coins, supported by unit tests to ensure functionality. This project demonstrates proficiency in Swift, API integration, and the use of modern UI frameworks.
 
 ## Screenshots
 |     |     |     |
